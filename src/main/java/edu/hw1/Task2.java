@@ -1,6 +1,6 @@
 package edu.hw1;
 
-public class Task2{
+public class Task2 {
 
     static final int TEN = 10;
 
@@ -8,10 +8,10 @@ public class Task2{
         int countOfDigits = 0;
         int num = number;
 
-        if(num == 0) {
+        if (num == 0) {
             countOfDigits = 1;
         }
-        while(Math.abs(num) > 0) {
+        while (Math.abs(num) > 0) {
             num /= TEN;
             countOfDigits++;
         }

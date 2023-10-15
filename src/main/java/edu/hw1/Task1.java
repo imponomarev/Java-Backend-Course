@@ -12,8 +12,7 @@ public class Task1 {
 
         if (seconds >= SECONDS_IN_MINUTE) {
             return -1;
-        }
-        else {
+        } else {
             result = minutes * SECONDS_IN_MINUTE + seconds;
         }
         return result;
