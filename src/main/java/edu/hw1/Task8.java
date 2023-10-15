@@ -1,6 +1,6 @@
 package edu.hw1;
 
-public class Task8{
+public class Task8 {
 
     static final int TWO = 2;
 
