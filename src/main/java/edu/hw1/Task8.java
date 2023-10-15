@@ -2,8 +2,10 @@ package edu.hw1;
 
 public class Task8{
 
-    public boolean knightBoardCapture(int[][] board){
-        int[][] moves = {{-2, -1}, {-2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}, {2, -1}, {2, 1}};
+    static final int TWO = 2;
+
+    public boolean knightBoardCapture(int[][] board) {
+        int[][] moves = {{-TWO, -1}, {-TWO, 1}, {-1, -TWO}, {-1, TWO}, {1, -TWO}, {1, TWO}, {TWO, -1}, {TWO, 1}};
 
         int size = board.length;
 

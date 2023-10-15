@@ -6,7 +6,7 @@ public class Task4 {
         char[] charArray = str.toCharArray();
         for (int i = 0; i < charArray.length; i += 2) {
             tmp = charArray[i];
-            if (i + 1 == charArray.length){
+            if (i + 1 == charArray.length) {
                 break;
             }
             charArray[i] = charArray[i + 1];
