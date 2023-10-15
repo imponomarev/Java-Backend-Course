@@ -1,28 +1,29 @@
 package edu.hw1;
 
-public class Task7 {
+public class Task7{
     public int rotateRight(int n, int shift){
+        int shiftValue = shift;
 
         String binary = Integer.toBinaryString(n);
         int[] binaryDigits = new int[binary.length()];
 
-        for (int i = 0; i < binary.length(); i++){
+        for(int i = 0; i < binary.length(); i++){
             binaryDigits[i] = Character.getNumericValue(binary.charAt(i));
         }
 
         int length = binaryDigits.length;
         int[] result = new int[length];
 
-        shift %= length;
+        shiftValue %= length;
 
-        for (int i = 0; i < length; i++) {
-            int newIndex = (i + shift) % length;
+        for(int i = 0; i < length; i++){
+            int newIndex = (i + shiftValue) % length;
             result[newIndex] = binaryDigits[i];
         }
 
         StringBuilder strBinary = new StringBuilder();
 
-        for (int bin : result) {
+        for(int bin : result){
             strBinary.append(bin);
         }
 
@@ -32,27 +33,28 @@ public class Task7 {
     }
 
     public int rotateLeft(int n, int shift){
+        int shiftValue = shift;
 
         String binary = Integer.toBinaryString(n);
         int[] binaryDigits = new int[binary.length()];
 
-        for (int i = 0; i < binary.length(); i++){
+        for(int i = 0; i < binary.length(); i++){
             binaryDigits[i] = Character.getNumericValue(binary.charAt(i));
         }
 
         int length = binaryDigits.length;
         int[] result = new int[length];
 
-        shift %= length;
+        shiftValue %= length;
 
-        for (int i = 0; i < length; i++) {
-            int newIndex = (i - shift + length) % length;
+        for(int i = 0; i < length; i++){
+            int newIndex = (i - shiftValue + length) % length;
             result[newIndex] = binaryDigits[i];
         }
 
         StringBuilder strBinary = new StringBuilder();
 
-        for (int bin : result) {
+        for(int bin : result){
             strBinary.append(bin);
         }
 
