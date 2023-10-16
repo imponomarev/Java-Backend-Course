@@ -4,6 +4,10 @@ public class Task7 {
     public int rotateRight(int n, int shift) {
         int shiftValue = shift;
 
+        if (shiftValue < 0){
+            return rotateLeft(n, Math.abs(shiftValue));
+        }
+
         String binary = Integer.toBinaryString(n);
         int[] binaryDigits = new int[binary.length()];
 
@@ -34,6 +38,10 @@ public class Task7 {
 
     public int rotateLeft(int n, int shift) {
         int shiftValue = shift;
+
+        if (shiftValue < 0){
+            return rotateRight(n, Math.abs(shiftValue));
+        }
 
         String binary = Integer.toBinaryString(n);
         int[] binaryDigits = new int[binary.length()];

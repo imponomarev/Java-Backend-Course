@@ -16,7 +16,7 @@ public class Task5 {
 
     public String conversionToPalindrome(int number) {
         String digits = String.valueOf(number);
-        StringBuilder newDigits = new StringBuilder();
+        StringBuilder newDigits = new StringBuilder(digits.length() / 2);
         for (int i = 0; i < digits.length(); i += 2) {
             if (i + 1 == digits.length()) {
                 newDigits.append(digits.charAt(i));

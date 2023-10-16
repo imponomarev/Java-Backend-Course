@@ -9,12 +9,13 @@ public class Task2 {
         int num = number;
 
         if (num == 0) {
-            countOfDigits = 1;
+            return 1;
         }
-        while (Math.abs(num) > 0) {
+        do {
             num /= TEN;
             countOfDigits++;
-        }
+        } while (num != 0);
+
         return countOfDigits;
     }
 }

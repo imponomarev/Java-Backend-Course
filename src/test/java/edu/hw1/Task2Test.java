@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class Task2Test {
 
     @ParameterizedTest
-    @CsvSource({"12345, 5", "-12345, 5", "0, 1"})
+    @CsvSource({"12345, 5", "-12345, 5", "0, 1", "-2147483648, 10"})
     @DisplayName("Counting the number of digits in decimal form of a number")
     void testCountDigits(int input, int expected){
 

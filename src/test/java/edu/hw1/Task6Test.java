@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class Task6Test {
 
     @ParameterizedTest
-    @CsvSource({"3524, 3", "6621, 5", "6554, 4", "1234, 3", "6174, 1"})
+    @CsvSource({"3524, 3", "6621, 5", "6554, 4", "1234, 3", "6174, 0"})
     @DisplayName("Getting the Kaprekar constant from four-digit numbers")
     void testCountK(int number, int expected){
 

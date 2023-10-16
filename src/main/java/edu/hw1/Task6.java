@@ -6,24 +6,42 @@ import java.util.Comparator;
 
 public class Task6 {
 
-    int counter = 1;
     static final int KAPREKAR_CONSTANT = 6174;
 
     public int countK(int number) {
+        return countKRecursive(number, 0);
+    }
+
+    private int countKRecursive(int number, int steps){
+
+        if (number == KAPREKAR_CONSTANT) {
+            return steps;
+        }
+
         String strNumber = String.valueOf(number);
-        Integer[] digits = new Integer[strNumber.length()];
+        int[] digits = new int[strNumber.length()];
 
         for (int i = 0; i < strNumber.length(); i++) {
             digits[i] = Character.getNumericValue(strNumber.charAt(i));
         }
 
         Arrays.sort(digits);
-        Integer[] descending = Arrays.copyOf(digits, digits.length);
 
-        Arrays.sort(descending, Comparator.reverseOrder());
+        Integer[] temp = new Integer[digits.length];
+        for (int i = 0; i < digits.length; i++) {
+            temp[i] = digits[i];
+        }
 
-        StringBuilder strAscending = new StringBuilder();
-        StringBuilder strDescending = new StringBuilder();
+        Arrays.sort(temp, Comparator.reverseOrder());
+
+        int[] descending = Arrays.copyOf(digits, digits.length);
+
+        for (int i = 0; i < temp.length; i++) {
+            descending[i] = temp[i];
+        }
+
+        StringBuilder strAscending = new StringBuilder(strNumber.length());
+        StringBuilder strDescending = new StringBuilder(strNumber.length());
 
         for (int i = 0; i < digits.length; i++) {
             strAscending.append(digits[i]);
@@ -35,10 +53,6 @@ public class Task6 {
 
         int newNumber = Integer.parseInt(strDescending.toString()) - Integer.parseInt(strAscending.toString());
 
-        if (newNumber != KAPREKAR_CONSTANT) {
-            counter += 1;
-            return countK(newNumber);
-        }
-        return counter;
+        return countKRecursive(newNumber, steps + 1);
     }
 }

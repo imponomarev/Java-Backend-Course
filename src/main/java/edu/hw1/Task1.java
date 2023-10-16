@@ -10,7 +10,7 @@ public class Task1 {
         int seconds = Integer.parseInt(splitedTime[1]);
         int result = 0;
 
-        if (seconds >= SECONDS_IN_MINUTE) {
+        if (seconds >= SECONDS_IN_MINUTE || seconds < 0 || minutes < 0) {
             return -1;
         } else {
             result = minutes * SECONDS_IN_MINUTE + seconds;

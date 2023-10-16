@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class Task7Test {
 
     @ParameterizedTest
-    @CsvSource({"16, 1, 1", "17, 2, 6", "85, 5, 53", "0, 5, 0", "100, 14, 100"})
+    @CsvSource({"16, 1, 1", "17, 2, 6", "85, 5, 53", "0, 5, 0", "100, 14, 100", "16, -2, 4"})
     @DisplayName("Cyclic shift to the left")
     void testRotateLeft(int number, int shift, int expected){
 
@@ -23,7 +23,7 @@ public class Task7Test {
     }
 
     @ParameterizedTest
-    @CsvSource({"8, 1, 4", "16, 3, 2", "48, 4, 3", "0, 5, 0", "100, 14, 100"})
+    @CsvSource({"8, 1, 4", "16, 3, 2", "48, 4, 3", "0, 5, 0", "100, 14, 100", "16, -2, 2"})
     @DisplayName("Cyclic shift to the right")
     void testRotateRight(int number, int shift, int expected){
 
