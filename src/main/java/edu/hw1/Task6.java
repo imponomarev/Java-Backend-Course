@@ -12,7 +12,7 @@ public class Task6 {
         return countKRecursive(number, 0);
     }
 
-    private int countKRecursive(int number, int steps){
+    private int countKRecursive(int number, int steps) {
 
         if (number == KAPREKAR_CONSTANT) {
             return steps;
