@@ -6,8 +6,7 @@ public class Task3 {
 
         if (min(a1) <= min(a2)) {
             return false;
-        }
-        else {
+        } else {
             return max(a1) < max(a2);
         }
     }
