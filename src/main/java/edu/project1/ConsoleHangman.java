@@ -1,8 +1,12 @@
 package edu.project1;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
 
 public class ConsoleHangman {
+
+    private Logger logger = LogManager.getLogger();
     private static final int MAX_ATTEMPTS = 5;
     private Session session;
 
@@ -17,17 +21,17 @@ public class ConsoleHangman {
 
         session = new Session(word, MAX_ATTEMPTS);
 
-        System.out.println("Guess the word: " + hideWord(word));
-        System.out.println("You have " + MAX_ATTEMPTS + " attempts.");
-        System.out.println("If you want to leave - press 1");
+        logger.info("Guess the word: " + hideWord(word));
+        logger.info("You have " + MAX_ATTEMPTS + " attempts.");
+        logger.info("If you want to leave - press 1");
 
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Guess a letter:");
+            logger.info("Guess a letter:");
             String input = scanner.nextLine();
             if (input.length() != 1) {
-                System.out.println("Invalid input. Please enter a single letter.");
+                logger.info("Invalid input. Please enter a single letter.");
                 continue;
             }
             char guess = input.charAt(0);
@@ -47,12 +51,12 @@ public class ConsoleHangman {
     }
 
     private void printState(GuessResult guessResult) {
-        System.out.println();
-        System.out.println("The word: " + new String(guessResult.state()));
-        System.out.println("Mistake " + guessResult.attempt() + " out of " + guessResult.maxAttempts());
-        System.out.println();
-        System.out.println(guessResult.message());
-        System.out.println();
+        logger.info(" ");
+        logger.info("The word: " + new String(guessResult.state()));
+        logger.info("Mistake " + guessResult.attempt() + " out of " + guessResult.maxAttempts());
+        logger.info(" ");
+        logger.info(guessResult.message());
+        logger.info(" ");
     }
 
     private String hideWord(String word) {
