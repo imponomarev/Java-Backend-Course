@@ -4,15 +4,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Task3 {
+    static final double SEPARATOR = 0.5;
 
-    private Logger logger = LogManager.getLogger();
-
-    public void setLogger(Logger logger) {
-        this.logger = logger;
-    }
 
     public interface Connection extends AutoCloseable {
-        public void execute(String command);
+        void execute(String command);
     }
 
     public interface ConnectionManager {
@@ -29,6 +25,8 @@ public class Task3 {
     public static class StableConnection implements Connection {
         Logger logger = LogManager.getLogger();
 
+        private static final String CONNECTION_CLOSED_MESSAGE = "connection closed";
+
         @Override
         public void execute(String command) {
             logger.info(command);
@@ -36,7 +34,7 @@ public class Task3 {
 
         @Override
         public void close() {
-            logger.info("connection closed");
+            logger.info(CONNECTION_CLOSED_MESSAGE);
 
         }
     }
@@ -45,10 +43,12 @@ public class Task3 {
 
         Logger logger = LogManager.getLogger();
 
+        private static final String CONNECTION_CLOSED_MESSAGE = "connection closed";
+
         @Override
         public void execute(String command) {
             double randomState = Math.random();
-            if (randomState >= 0.5) {
+            if (randomState >= SEPARATOR) {
                 logger.info(command);
             } else {
                 throw new ConnectionException("connection is not established");
@@ -57,7 +57,7 @@ public class Task3 {
 
         @Override
         public void close() {
-            logger.info("connection closed");
+            logger.info(CONNECTION_CLOSED_MESSAGE);
         }
     }
 
@@ -66,7 +66,7 @@ public class Task3 {
         @Override
         public Connection getConnection() {
             double randomState = Math.random();
-            if (randomState >= 0.5) {
+            if (randomState >= SEPARATOR) {
                 return new StableConnection();
             } else {
                 return new FaultyConnection();
@@ -85,6 +85,7 @@ public class Task3 {
     public static final class PopularCommandExecutor {
         private final ConnectionManager manager;
         private final int maxAttempts;
+
 
         public PopularCommandExecutor(ConnectionManager manager, int maxAttempts) {
             this.manager = manager;

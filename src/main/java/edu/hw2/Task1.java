@@ -16,6 +16,7 @@ public class Task1 {
             }
 
         }
+
         public record Negate(Expr operand) implements Expr {
             @Override
             public double evaluate() {
@@ -28,6 +29,7 @@ public class Task1 {
             }
 
         }
+
         public record Exponent(Expr base, double power) implements Expr {
             @Override
             public double evaluate() {
@@ -43,6 +45,7 @@ public class Task1 {
                 return "(" + base + ")^" + power;
             }
         }
+
         public record Addition(Expr operand1, Expr operand2) implements Expr {
             @Override
             public double evaluate() {
@@ -54,6 +57,7 @@ public class Task1 {
                 return "(" + operand1 + " + " + operand2 + ")";
             }
         }
+
         public record Multiplication(Expr operand1, Expr operand2) implements Expr {
             @Override
             public double evaluate() {

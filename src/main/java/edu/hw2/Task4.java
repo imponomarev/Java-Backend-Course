@@ -2,9 +2,9 @@ package edu.hw2;
 
 public class Task4 {
 
-    public record CallingInfo(String className, String methodName) {
-
+    private Task4() {
     }
+
 
     public static CallingInfo callingInfo() {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
@@ -19,5 +19,9 @@ public class Task4 {
         } else {
             throw new IllegalStateException("Cannot retrieve calling info");
         }
+    }
+
+    public record CallingInfo(String className, String methodName) {
+
     }
 }
