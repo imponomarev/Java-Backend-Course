@@ -6,6 +6,12 @@ import org.apache.logging.log4j.Logger;
 public class Task3 {
     static final double SEPARATOR = 0.5;
 
+    private static final String CONNECTION_CLOSED_MESSAGE = "connection closed";
+
+    private Task3() {
+
+    }
+
 
     public interface Connection extends AutoCloseable {
         void execute(String command);
@@ -25,7 +31,6 @@ public class Task3 {
     public static class StableConnection implements Connection {
         Logger logger = LogManager.getLogger();
 
-        private static final String CONNECTION_CLOSED_MESSAGE = "connection closed";
 
         @Override
         public void execute(String command) {
@@ -42,8 +47,6 @@ public class Task3 {
     public static class FaultyConnection implements Connection {
 
         Logger logger = LogManager.getLogger();
-
-        private static final String CONNECTION_CLOSED_MESSAGE = "connection closed";
 
         @Override
         public void execute(String command) {
