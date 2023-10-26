@@ -6,24 +6,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task2Test {
 
     static Arguments[] rectangles() {
         return new Arguments[]{
-            Arguments.of(new Task2.Rectangle(0, 0)),
-            Arguments.of(new Task2.Square(0))
+            Arguments.of(new Task2.Rectangle()),
+            Arguments.of(new Task2.Square())
         };
     }
 
     @ParameterizedTest
     @MethodSource("rectangles")
-    @DisplayName("Wrong test from example")
     void rectangleArea(Task2.Rectangle rect) {
-        rect.setWidth(20);
-        rect.setHeight(10);
+        Task2.Rectangle rectangle = rect;
+        rectangle = rectangle.setWidth(20);
+        rectangle = rectangle.setHeight(10);
 
-        Assertions.assertEquals(200.0, rect.area());
+        assertThat(rectangle.area()).isEqualTo(200.0);
     }
 
 

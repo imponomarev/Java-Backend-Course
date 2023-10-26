@@ -11,12 +11,24 @@ public class Task2 {
             this.height = height;
         }
 
-        protected void setWidth(int width) {
-            this.width = width;
+        public Rectangle() {
+
         }
 
-        protected void setHeight(int height) {
-            this.height = height;
+        public Rectangle setWidth(int width) {
+            return new Rectangle(width, height);
+        }
+
+        public Rectangle setHeight(int height) {
+            return new Rectangle(width, height);
+        }
+
+        public int getWidth() {
+            return width;
+        }
+
+        public int getHeight() {
+            return height;
         }
 
         public double area() {
@@ -27,6 +39,26 @@ public class Task2 {
     public static class Square extends Rectangle {
         public Square(int side) {
             super(side, side);
+        }
+
+        public Square() {
+
+        }
+
+        @Override
+        public Rectangle setWidth(int width) {
+            if (width != getHeight()) {
+                return new Rectangle(width, getHeight());
+            }
+            return new Square(width);
+        }
+
+        @Override
+        public Rectangle setHeight(int height) {
+            if (height != getWidth()) {
+                return new Rectangle(getWidth(), height);
+            }
+            return new Square(height);
         }
     }
 }

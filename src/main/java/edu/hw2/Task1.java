@@ -1,10 +1,10 @@
 package edu.hw2;
 
 public class Task1 {
-    public sealed interface Expr {
+    sealed interface Expr {
         double evaluate();
 
-        public record Constant(double value) implements Expr {
+        record Constant(double value) implements Expr {
             @Override
             public double evaluate() {
                 return value;
@@ -17,7 +17,7 @@ public class Task1 {
 
         }
 
-        public record Negate(Expr operand) implements Expr {
+        record Negate(Expr operand) implements Expr {
             @Override
             public double evaluate() {
                 return -operand.evaluate();
@@ -30,14 +30,10 @@ public class Task1 {
 
         }
 
-        public record Exponent(Expr base, double power) implements Expr {
+        record Exponent(Expr base, double power) implements Expr {
             @Override
             public double evaluate() {
-                double result = base.evaluate();
-                for (int i = 1; i < power; i++) {
-                    result *= base.evaluate();
-                }
-                return result;
+                return Math.pow(base().evaluate(), power);
             }
 
             @Override
@@ -46,7 +42,7 @@ public class Task1 {
             }
         }
 
-        public record Addition(Expr operand1, Expr operand2) implements Expr {
+        record Addition(Expr operand1, Expr operand2) implements Expr {
             @Override
             public double evaluate() {
                 return operand1.evaluate() + operand2.evaluate();
@@ -58,7 +54,7 @@ public class Task1 {
             }
         }
 
-        public record Multiplication(Expr operand1, Expr operand2) implements Expr {
+        record Multiplication(Expr operand1, Expr operand2) implements Expr {
             @Override
             public double evaluate() {
                 return operand1.evaluate() * operand2.evaluate();
