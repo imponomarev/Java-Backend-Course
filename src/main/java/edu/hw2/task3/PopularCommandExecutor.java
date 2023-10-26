@@ -38,7 +38,7 @@ public final class PopularCommandExecutor {
 
             }
         }
-        throw new ConnectionException("failed to execute command: " + command +
-            " after " + maxAttempts + " attempts", reasonForRetry);
+        throw new ConnectionException("failed to execute command: " + command
+            + " after " + maxAttempts + " attempts", reasonForRetry);
     }
 }
