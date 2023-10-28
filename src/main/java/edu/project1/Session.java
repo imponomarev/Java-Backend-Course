@@ -78,10 +78,6 @@ public class Session {
         return new GuessResult.Defeat(answer.toCharArray(), attempts, maxAttempts, YOU_LOST + answer);
     }
 
-    private GuessResult win(){
-        return new GuessResult.Win(userAnswer, attempts, maxAttempts, "Congratulations! You won!");
-    }
-
 
 
 
