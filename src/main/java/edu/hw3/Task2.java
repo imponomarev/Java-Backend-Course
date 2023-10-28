@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Task2 {
 
-    private final String NOT_BALANCED = "the cluster cannot be balanced";
+    private static final String UNBALANCED = "the cluster cannot be balanced";
 
     public String[] clusterize(String input) {
 
@@ -27,7 +27,7 @@ public class Task2 {
                 }
             } else if (input.charAt(i) == ')') {
                 if (open == 0) {
-                    throw new RuntimeException(NOT_BALANCED);
+                    throw new RuntimeException(UNBALANCED);
                 } else {
                     close++;
                     closeCounter++;
@@ -42,7 +42,7 @@ public class Task2 {
             }
         }
         if (openCounter != closeCounter) {
-            throw new RuntimeException(NOT_BALANCED);
+            throw new RuntimeException(UNBALANCED);
         } else {
             return cluster.toArray(new String[0]);
         }
