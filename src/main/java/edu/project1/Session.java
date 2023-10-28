@@ -47,18 +47,22 @@ public class Session {
                 alreadyGuessed = true;
             }
         }
+
+        GuessResult result;
+
         if (isWin()) {
-            return new GuessResult.Win(userAnswer, attempts, maxAttempts, "Congratulations! You won!");
+            result = new GuessResult.Win(userAnswer, attempts, maxAttempts, "Congratulations! You won!");
         } else if (attempts >= maxAttempts) {
-            return new GuessResult.Defeat(answer.toCharArray(), attempts, maxAttempts, YOU_LOST + answer);
+            result =  new GuessResult.Defeat(answer.toCharArray(), attempts, maxAttempts, YOU_LOST + answer);
         } else if (hit) {
-            return new GuessResult.SuccessfulGuess(userAnswer, attempts, maxAttempts, "Hit!");
+            result =  new GuessResult.SuccessfulGuess(userAnswer, attempts, maxAttempts, "Hit!");
         } else if (alreadyGuessed) {
-            return new GuessResult.FailedGuess(userAnswer, attempts, maxAttempts, "You already guessed that letter.");
+            result = new GuessResult.FailedGuess(userAnswer, attempts, maxAttempts, "You already guessed that letter.");
         } else {
-            return new GuessResult.FailedGuess(userAnswer, attempts, maxAttempts, "Missed, mistake "
+            result =  new GuessResult.FailedGuess(userAnswer, attempts, maxAttempts, "Missed, mistake "
                 + attempts + " out of " + maxAttempts + ".");
         }
+        return result;
     }
 
     private boolean isWin() {
@@ -73,6 +77,11 @@ public class Session {
     GuessResult giveUp() {
         return new GuessResult.Defeat(answer.toCharArray(), attempts, maxAttempts, YOU_LOST + answer);
     }
+
+    private GuessResult win(){
+        return new GuessResult.Win(userAnswer, attempts, maxAttempts, "Congratulations! You won!");
+    }
+
 
 
 
