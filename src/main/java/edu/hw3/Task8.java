@@ -12,7 +12,7 @@ public class Task8 {
 
         private int currInd;
 
-        public BackwardIterator(Collection<T> collection) {
+        BackwardIterator(Collection<T> collection) {
             this.values = (T[]) collection.toArray();
             this.currInd = values.length - 1;
         }

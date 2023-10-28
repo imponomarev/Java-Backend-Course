@@ -5,33 +5,6 @@ import java.util.List;
 
 public class Task5 {
 
-    class Person implements Comparable<Person> {
-        private String name;
-        private String surname;
-
-        public Person(String name, String surname) {
-            this.name = name;
-            this.surname = surname;
-        }
-
-        public Person(String surname) {
-            this.surname = surname;
-        }
-
-        @Override
-        public int compareTo(Person person) {
-            if (!(this.surname.equalsIgnoreCase(person.surname))) {
-                return this.surname.compareTo(person.surname);
-            }
-            return this.name.compareTo(person.name);
-        }
-
-        @Override
-        public String toString() {
-            return name + " " + surname;
-        }
-
-    }
 
     public List<Person> parseContacts(String[] input, String order) {
         List<Person> list = new ArrayList<>();
@@ -52,5 +25,33 @@ public class Task5 {
         }
 
         return list;
+    }
+
+    class Person implements Comparable<Person> {
+        private String name;
+        private String surname;
+
+        Person(String name, String surname) {
+            this.name = name;
+            this.surname = surname;
+        }
+
+        Person(String surname) {
+            this.surname = surname;
+        }
+
+        @Override
+        public int compareTo(Person person) {
+            if (!(this.surname.equalsIgnoreCase(person.surname))) {
+                return this.surname.compareTo(person.surname);
+            }
+            return this.name.compareTo(person.name);
+        }
+
+        @Override
+        public String toString() {
+            return name + " " + surname;
+        }
+
     }
 }

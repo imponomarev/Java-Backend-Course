@@ -5,6 +5,15 @@ import java.util.Map;
 
 public class Task1 {
 
+    private final int LOWER_BORDER_OF_CAPITAL_LETTERS = 64;
+
+    private final int UPPER_LIMIT_OF_CAPITAL_LETTERS = 91;
+
+    private final int LOWER_BOUND_OF_LOWERCASE_LETTERS = 96;
+
+    private final int UPPER_BOUND_OF_LOWERCASE_LETTERS = 123;
+
+
     public String atbash(String input) {
 
         String alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -23,7 +32,7 @@ public class Task1 {
 
             char value = input.charAt(i);
 
-            if (!((value > 64 && value < 91) || (value > 96 && value < 123))) {
+            if (!((value > LOWER_BORDER_OF_CAPITAL_LETTERS && value < UPPER_LIMIT_OF_CAPITAL_LETTERS) || (value > LOWER_BOUND_OF_LOWERCASE_LETTERS && value < UPPER_BOUND_OF_LOWERCASE_LETTERS))) {
                 answer.append(value);
                 continue;
             }

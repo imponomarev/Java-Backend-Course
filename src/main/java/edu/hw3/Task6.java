@@ -45,7 +45,7 @@ public class Task6 {
 
         List<Stock> stocks;
 
-        public StockExchange(List<Stock> stocks) {
+        StockExchange(List<Stock> stocks) {
             this.stocks = stocks;
         }
 
