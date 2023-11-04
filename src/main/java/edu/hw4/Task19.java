@@ -1,11 +1,12 @@
 package edu.hw4;
 
+import edu.hw4.validationTask19.Validator;
+import edu.hw4.validationTask19.ValidatorError;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import edu.hw4.validationTask19.Validator;
-import edu.hw4.validationTask19.ValidatorError;
+
 
 public class Task19 {
 

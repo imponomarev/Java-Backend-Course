@@ -27,7 +27,7 @@ class Task15Test {
 
         Task15 task15 = new Task15();
 
-        Map<Animal.Type, Integer> result = task15.getTotalWeightOfAnimalsOfEachSpeciesAtCertainAge(animals, 0, 4);
+        Map<Animal.Type, Integer> result = task15.getTotalWeightOfAnimalsOfEachSpecies(animals, 0, 4);
 
         Map<Animal.Type, Integer> expected = Map.of(CAT, 15 , DOG, 30, BIRD, 12);
 

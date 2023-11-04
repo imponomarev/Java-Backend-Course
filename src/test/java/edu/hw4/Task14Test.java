@@ -12,7 +12,7 @@ import static edu.hw4.Animal.Type.DOG;
 class Task14Test {
 
     @Test
-    void IsThereDogAboveKTest() {
+    void isThereDogAboveKTest() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 21, true);
         Animal cat2 = new Animal("Bobbos Beavis", CAT, M, 4, 10, 15, true);
@@ -25,13 +25,13 @@ class Task14Test {
 
         Task14 task14 = new Task14();
 
-        Boolean result = task14.IsThereDogAboveK(animals, 101);
+        Boolean result = task14.isThereDogAboveK(animals, 101);
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    void IsThereDogAboveKTestWithNegK() {
+    void isThereDogAboveKTestWithNegK() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 21, true);
         Animal cat2 = new Animal("Bobbos Beavis", CAT, M, 4, 10, 15, true);
@@ -44,13 +44,13 @@ class Task14Test {
 
         Task14 task14 = new Task14();
 
-        Boolean result = task14.IsThereDogAboveK(animals, -10);
+        Boolean result = task14.isThereDogAboveK(animals, -10);
 
         Assertions.assertTrue(result);
     }
 
     @Test
-    void IsThereDogAboveKTestFalse() {
+    void isThereDogAboveKTestFalse() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 21, true);
         Animal cat2 = new Animal("Bobbos Beavis", CAT, M, 4, 10, 15, true);
@@ -63,7 +63,7 @@ class Task14Test {
 
         Task14 task14 = new Task14();
 
-        Boolean result = task14.IsThereDogAboveK(animals, 25);
+        Boolean result = task14.isThereDogAboveK(animals, 25);
 
         Assertions.assertFalse(result);
     }

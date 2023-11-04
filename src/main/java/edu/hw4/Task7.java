@@ -14,7 +14,7 @@ public class Task7 {
         return animals.stream()
             .sorted(Comparator.comparing(Animal::age).reversed())
             .skip(k - 1)
-            .findFirst().
-            orElse(null);
+            .findFirst()
+            .orElse(null);
     }
 }
