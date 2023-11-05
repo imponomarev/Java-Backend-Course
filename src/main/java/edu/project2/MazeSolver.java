@@ -18,6 +18,8 @@ public class MazeSolver implements Solver {
 
     Random random;
 
+    private static final String NO_SOLUTION = "No solution found!";
+
     public MazeSolver(Maze maze) {
         this.maze = maze;
         this.visited = new boolean[maze.getHeight()][maze.getWidth()];
@@ -61,13 +63,13 @@ public class MazeSolver implements Solver {
                 deque.push(choice);
             } else {
                 if (solution.isEmpty()) {
-                    throw new SolverException("No solution found!");
+                    throw new SolverException(NO_SOLUTION);
                 }
                 solution.remove(solution.size() - 1);
             }
         }
 
-        throw new SolverException("No solution found!");
+        throw new SolverException(NO_SOLUTION);
     }
 
 
@@ -78,17 +80,29 @@ public class MazeSolver implements Solver {
     private List<Cell> getUnvisitedNeighboursOfCell(Cell cell) {
         List<Cell> neighbours = new ArrayList<>();
 
-        if (cell.getRow() > 0 && !visited[cell.getRow() - 1][cell.getCol()] && !cell.hasWall(Cell.Wall.TOP)) {
+        if (cell.getRow() > 0
+            && !visited[cell.getRow() - 1][cell.getCol()] && !cell.hasWall(Cell.Wall.TOP)) {
+
             neighbours.add(maze.getCell(cell.getRow() - 1, cell.getCol()));
+
         }
-        if (cell.getRow() < maze.getHeight() - 1 && !visited[cell.getRow() + 1][cell.getCol()] && !cell.hasWall(Cell.Wall.BOTTOM)) {
+        if (cell.getRow() < maze.getHeight() - 1
+            && !visited[cell.getRow() + 1][cell.getCol()] && !cell.hasWall(Cell.Wall.BOTTOM)) {
+
             neighbours.add(maze.getCell(cell.getRow() + 1, cell.getCol()));
+
         }
-        if (cell.getCol() > 0 && !visited[cell.getRow()][cell.getCol() - 1] && !cell.hasWall(Cell.Wall.LEFT)) {
+        if (cell.getCol() > 0
+            && !visited[cell.getRow()][cell.getCol() - 1] && !cell.hasWall(Cell.Wall.LEFT)) {
+
             neighbours.add(maze.getCell(cell.getRow(), cell.getCol() - 1));
+
         }
-        if (cell.getCol() < maze.getWidth() - 1 && !visited[cell.getRow()][cell.getCol() + 1] && !cell.hasWall(Cell.Wall.RIGHT)) {
+        if (cell.getCol() < maze.getWidth() - 1
+            && !visited[cell.getRow()][cell.getCol() + 1] && !cell.hasWall(Cell.Wall.RIGHT)) {
+
             neighbours.add(maze.getCell(cell.getRow(), cell.getCol() + 1));
+            
         }
 
         return neighbours;

@@ -8,10 +8,12 @@ public class Cell {
 
     private int walls;
 
+    private static final int FULL = 15;
+
     public Cell(int row, int col) {
         this.row = row;
         this.col = col;
-        this.walls = 15;
+        this.walls = FULL;
     }
 
     public int getRow() {

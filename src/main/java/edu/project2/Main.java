@@ -19,6 +19,10 @@ public class Main {
 
     private static final int END_Y  = 4;
 
+    public Main() {
+
+    }
+
 
     public static void main(String[] args) {
 

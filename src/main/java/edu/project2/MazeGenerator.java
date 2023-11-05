@@ -14,6 +14,8 @@ public class MazeGenerator implements Generator {
 
     private final Deque<Cell> deque;
 
+    private static final int FULL = 15;
+
     Random random;
 
     public MazeGenerator(int height, int width) {
@@ -30,7 +32,7 @@ public class MazeGenerator implements Generator {
     private void initMazeWithWalls() {
         for (int i = 0; i < maze.getHeight(); i++) {
             for (int j = 0; j < maze.getWidth(); j++) {
-                maze.getCell(i, j).setWalls(15);
+                maze.getCell(i, j).setWalls(FULL);
             }
         }
     }

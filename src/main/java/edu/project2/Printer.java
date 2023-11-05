@@ -8,10 +8,12 @@ public class Printer {
     private final Logger logger;
     private static final int CELL_SIZE = 3;
 
+    private static final int TEN = 10;
+
 
     public Printer(Maze maze, Logger logger) {
         this.maze = maze;
-        this.strMaze = new String[maze.getHeight() * 3][maze.getWidth() * 3];
+        this.strMaze = new String[maze.getHeight() * CELL_SIZE][maze.getWidth() * CELL_SIZE];
         this.logger = logger;
 
     }
@@ -33,11 +35,11 @@ public class Printer {
         int strI = 1;
         int strJ;
         for (int i = 0; i < maze.getHeight(); i++) {
-            strI += i * 3;
+            strI += i * CELL_SIZE;
             strJ = 1;
             for (int j = 0; j < maze.getWidth(); j++) {
                 Cell cell = maze.getCell(i, j);
-                strJ += j * 3;
+                strJ += j * CELL_SIZE;
                 if (cell.hasWall(Cell.Wall.BOTTOM)) {
                     strMaze[strI + 1][strJ - 1] = "██";
                     strMaze[strI + 1][strJ] = "██";
@@ -58,9 +60,9 @@ public class Printer {
                     strMaze[strI][strJ + 1] = "██";
                     strMaze[strI - 1][strJ + 1] = "██";
                 }
-                strJ -= j * 3;
+                strJ -= j * CELL_SIZE;
             }
-            strI -= i * 3;
+            strI -= i * CELL_SIZE;
         }
         return strMaze;
     }
@@ -71,23 +73,24 @@ public class Printer {
         }
         strMaze[solution[0][0] * CELL_SIZE + 1][solution[0][1] * CELL_SIZE + 1] = "EN";
 
-        strMaze[solution[solution.length - 1][0] * CELL_SIZE + 1][solution[solution.length - 1][1] * CELL_SIZE + 1] = "EX";
+        strMaze[solution[solution.length - 1][0] * CELL_SIZE + 1]
+            [solution[solution.length - 1][1] * CELL_SIZE + 1] = "EX";
     }
 
     public void printMaze() {
-        StringBuilder CoordinatesY = new StringBuilder();
-        CoordinatesY.append("      ");
+        StringBuilder yCoordinates = new StringBuilder();
+        yCoordinates.append("      ");
         for (int i = 0; i < maze.getWidth(); i++) {
-            CoordinatesY.append(i).append("     ");
+            yCoordinates.append(i).append("     ");
         }
-        logger.info(CoordinatesY);
+        logger.info(yCoordinates);
         for (int i = 0; i < strMaze.length; i++) {
             StringBuilder row = new StringBuilder();
-            if (i % 3 == 1) {
-                if (i / 3 < 10) {
-                    row.append(i / 3).append("   ");
+            if (i % CELL_SIZE == 1) {
+                if (i / CELL_SIZE < TEN) {
+                    row.append(i / CELL_SIZE).append("   ");
                 } else {
-                    row.append(i / 3).append("  ");
+                    row.append(i / CELL_SIZE).append("  ");
                 }
             } else {
                 row.append("    ");
