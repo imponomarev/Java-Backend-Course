@@ -88,21 +88,15 @@ public class MazeSolver implements Solver {
         }
         if (cell.getRow() < maze.getHeight() - 1
             && !visited[cell.getRow() + 1][cell.getCol()] && !cell.hasWall(Cell.Wall.BOTTOM)) {
-
             neighbours.add(maze.getCell(cell.getRow() + 1, cell.getCol()));
-
         }
         if (cell.getCol() > 0
             && !visited[cell.getRow()][cell.getCol() - 1] && !cell.hasWall(Cell.Wall.LEFT)) {
-
             neighbours.add(maze.getCell(cell.getRow(), cell.getCol() - 1));
-
         }
         if (cell.getCol() < maze.getWidth() - 1
             && !visited[cell.getRow()][cell.getCol() + 1] && !cell.hasWall(Cell.Wall.RIGHT)) {
-
             neighbours.add(maze.getCell(cell.getRow(), cell.getCol() + 1));
-            
         }
 
         return neighbours;

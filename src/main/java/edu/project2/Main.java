@@ -3,7 +3,7 @@ package edu.project2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Main {
+public final class Main {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -19,7 +19,7 @@ public class Main {
 
     private static final int END_Y  = 4;
 
-    public Main() {
+    private Main() {
 
     }
 
