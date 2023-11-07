@@ -7,14 +7,15 @@ import org.apache.logging.log4j.Logger;
 
 public class ConsoleHangman {
 
-    private Logger logger = LogManager.getLogger();
+    private Logger logger;
 
     private static final int MAX_ATTEMPTS = 5;
 
     private final WordBase dictionary;
 
-    public ConsoleHangman(WordBase dictionary) {
+    public ConsoleHangman(WordBase dictionary, Logger logger) {
         this.dictionary = dictionary;
+        this.logger = LogManager.getLogger();
     }
 
     public void run() {
@@ -59,7 +60,6 @@ public class ConsoleHangman {
         logger.info("Mistake " + guessResult.attempt() + " out of " + guessResult.maxAttempts());
         logger.info(" ");
         logger.info(guessResult.message());
-        logger.info(" ");
     }
 
     String hideWord(String word) {

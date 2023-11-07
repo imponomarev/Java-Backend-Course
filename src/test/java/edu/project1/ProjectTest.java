@@ -1,9 +1,12 @@
 package edu.project1;
 
+
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.apache.logging.log4j.LogManager.getLogger;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -16,8 +19,6 @@ class ProjectTest {
 
     private ConsoleHangman consoleHangman;
 
-
-
     @BeforeEach
     void setUp() {
         session = new Session("hello", 5);
@@ -25,7 +26,9 @@ class ProjectTest {
         String[] words = {" "};
         WordBase wordBase = new WordBase(words);
 
-        consoleHangman = new ConsoleHangman(wordBase);
+        Logger logger = getLogger();
+
+        consoleHangman = new ConsoleHangman(wordBase, logger);
     }
 
     @Test
