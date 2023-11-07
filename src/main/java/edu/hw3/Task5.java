@@ -1,6 +1,7 @@
 package edu.hw3;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Task5 {
@@ -14,16 +15,23 @@ public class Task5 {
         }
 
         for (int i = 0; i < input.length; i++) {
-            list.add(new Person(input[i].split(" ")[0], input[i].split(" ")[1]));
+            String[] parts = input[i].split(" ");
+            if (parts.length > 1) {
+                list.add(new Person(parts[0], parts[1]));
+            } else {
+                list.add(new Person(parts[0], ""));
+            }
+        }
+
+        if (!(order.equals("ASC") || order.equals("DESC"))) {
+            throw new RuntimeException("Order have to be equals ASC or DESC!");
         }
 
         if (order.equals("ASC")) {
-            list.sort(Person::compareTo);
+            list.sort(Comparator.naturalOrder());
         } else if (order.equals("DESC")) {
-            list.sort(Person::compareTo);
-            list = list.reversed();
+            list.sort(Comparator.reverseOrder());
         }
-
         return list;
     }
 

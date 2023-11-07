@@ -1,9 +1,7 @@
 package edu.hw3;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Task6 {
 
@@ -43,10 +41,10 @@ public class Task6 {
 
     class StockExchange implements StockMarket {
 
-        List<Stock> stocks;
+        PriorityQueue<Stock> stocks;
 
-        StockExchange(List<Stock> stocks) {
-            this.stocks = stocks;
+        StockExchange() {
+            this.stocks = new PriorityQueue<>(Comparator.comparingInt(Stock::getCost).reversed());
         }
 
         @Override
@@ -61,13 +59,7 @@ public class Task6 {
 
         @Override
         public Stock mostValuableStock() {
-
-            Queue<Stock> queue = new PriorityQueue<>(Comparator.comparingInt(Stock::getCost).reversed());
-
-            queue.addAll(stocks);
-
-            return queue.peek();
-
+            return stocks.peek();
         }
     }
 }

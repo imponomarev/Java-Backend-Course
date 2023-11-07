@@ -134,4 +134,41 @@ class Task5Test {
         //Then
         Assertions.assertEquals(expected.toString(), result.toString());
     }
+
+    @Test
+    void inputOnlyNames() {
+
+        //Given
+        String[] input = {"John", "Thomas Aquinas", "David", "Rene Descartes"};
+        String order = "DESC";
+        List<Task5.Person> expected = Arrays.asList(
+            task5.new Person("Rene", "Descartes"),
+            task5.new Person("Thomas", "Aquinas"),
+            task5.new Person("John", ""),
+            task5.new Person("David", "")
+        );
+
+        //When
+        List<Task5.Person> result = task5.parseContacts(input, order);
+
+        //Then
+        Assertions.assertEquals(expected.toString(), result.toString());
+    }
+
+    @Test
+    void inputWrongOrder() {
+
+        //Given
+        String[] input = {"John", "Thomas Aquinas", "David", "Rene Descartes"};
+        String order = "";
+        List<Task5.Person> expected = Arrays.asList(
+            task5.new Person("Rene", "Descartes"),
+            task5.new Person("Thomas", "Aquinas"),
+            task5.new Person("John", ""),
+            task5.new Person("David", "")
+        );
+
+        //Then
+        Assertions.assertThrows(RuntimeException.class, () -> task5.parseContacts(input, order), "Order have to be equals ASC or DESC!");
+    }
 }

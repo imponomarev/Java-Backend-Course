@@ -1,7 +1,5 @@
 package edu.hw3;
 
-
-import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,18 +22,20 @@ class Task6Test {
         //Given
         Task6.Stock stock1 = task6.new Stock("Stock1", 100);
         Task6.Stock stock2 = task6.new Stock("Stock2", 200);
-        Task6.Stock stock3 = task6.new Stock("Stock3", 150);
+        Task6.Stock stock3 = task6.new Stock("Stock3", 250);
+        Task6.Stock stock4 = task6.new Stock("Stock3", 150);
 
         //When
-        Task6.StockExchange stockExchange = task6.new StockExchange(new ArrayList<Task6.Stock>());
+        Task6.StockExchange stockExchange = task6.new StockExchange();
         stockExchange.add(stock1);
         stockExchange.add(stock2);
         stockExchange.add(stock3);
+        stockExchange.add(stock4);
 
         Task6.Stock mostValuableStock = stockExchange.mostValuableStock();
 
         //Then
-        assertEquals(stock2, mostValuableStock);
+        assertEquals(stock3, mostValuableStock);
     }
 
     @Test
@@ -47,7 +47,7 @@ class Task6Test {
         Task6.Stock stock2 = task6.new Stock("Stock2", 200);
 
         //When
-        Task6.StockExchange stockExchange = task6.new StockExchange(new ArrayList<Task6.Stock>());
+        Task6.StockExchange stockExchange = task6.new StockExchange();
         stockExchange.add(stock1);
         stockExchange.add(stock2);
 
@@ -65,7 +65,7 @@ class Task6Test {
         Task6.Stock stock2 = task6.new Stock("Stock2", 200);
 
         //When
-        Task6.StockExchange stockExchange = task6.new StockExchange(new ArrayList<Task6.Stock>());
+        Task6.StockExchange stockExchange = task6.new StockExchange();
         stockExchange.add(stock1);
         stockExchange.add(stock2);
 

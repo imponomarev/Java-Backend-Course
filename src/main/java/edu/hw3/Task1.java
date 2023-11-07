@@ -1,65 +1,46 @@
 package edu.hw3;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Task1 {
 
-    private final int lowerBorderOfCapitalLetters = 64;
+    private final int lowerBorderOfCapitalLetters = 65;
 
-    private final int upperLimitOfCapitalLetters = 91;
+    private final int upperLimitOfCapitalLetters = 90;
 
-    private final int lowerBoundOfLowercaseLetters = 96;
+    private final int lowerBoundOfLowercaseLetters = 97;
 
-    private final int upperBoundOfLowercaseLetters = 123;
-
+    private final int upperBoundOfLowercaseLetters = 122;
 
     public String atbash(String input) {
-
-        String alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-        Map<Character, Integer> alphabetMap = new HashMap<>();
-
-        for (int i = 0; i < alphabet.length(); i++) {
-            alphabetMap.put(alphabet.charAt(i), i + 1);
-        }
-
         StringBuilder answer = new StringBuilder(input.length());
 
         for (int i = 0; i < input.length(); i++) {
-
-            boolean upper = false;
-
             char value = input.charAt(i);
 
-            if (!((value > lowerBorderOfCapitalLetters && value < upperLimitOfCapitalLetters)
-                || (value > lowerBoundOfLowercaseLetters && value < upperBoundOfLowercaseLetters))) {
+            if (!((value >= lowerBorderOfCapitalLetters && value <= upperLimitOfCapitalLetters)
+                || (value >= lowerBoundOfLowercaseLetters && value <= upperBoundOfLowercaseLetters))) {
                 answer.append(value);
                 continue;
             }
 
-            if (Character.isUpperCase(value)) {
-                upper = true;
-                value = Character.toLowerCase(value);
+            boolean upper = Character.isUpperCase(value);
+            int reflectedCode = getReflectedCode(value);
+
+            char reflectedChar = (char) reflectedCode;
+            if (upper) {
+                reflectedChar = Character.toUpperCase(reflectedChar);
             }
 
-            int index = alphabetMap.get(value);
-
-            for (Map.Entry<Character, Integer> entry : alphabetMap.entrySet()) {
-                if (entry.getValue().equals(alphabetMap.size() - index + 1)) {
-                    Character newVal = entry.getKey();
-                    if (upper) {
-                        answer.append(Character.toUpperCase(newVal));
-                        upper = false;
-                    } else {
-                        answer.append(newVal);
-                    }
-                }
-            }
+            answer.append(reflectedChar);
         }
 
-        String strAnswer = String.valueOf(answer);
+        return answer.toString();
+    }
 
-        return strAnswer;
+    private int getReflectedCode(char c) {
+        if (Character.isUpperCase(c)) {
+            return upperLimitOfCapitalLetters - (c - lowerBorderOfCapitalLetters);
+        } else {
+            return upperBoundOfLowercaseLetters - (c - lowerBoundOfLowercaseLetters);
+        }
     }
 }
