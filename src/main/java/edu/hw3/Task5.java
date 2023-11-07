@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Task5 {
 
+    private final static String ASC = "ASC";
+
+    private final static String DESC = "DESC";
+
 
     public List<Person> parseContacts(String[] input, String order) {
         List<Person> list = new ArrayList<>();
@@ -23,13 +27,13 @@ public class Task5 {
             }
         }
 
-        if (!(order.equals("ASC") || order.equals("DESC"))) {
+        if (!(order.equals(ASC) || order.equals(DESC))) {
             throw new RuntimeException("Order have to be equals ASC or DESC!");
         }
 
-        if (order.equals("ASC")) {
+        if (order.equals(ASC)) {
             list.sort(Comparator.naturalOrder());
-        } else if (order.equals("DESC")) {
+        } else if (order.equals(DESC)) {
             list.sort(Comparator.reverseOrder());
         }
         return list;
