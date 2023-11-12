@@ -5,7 +5,9 @@ import java.util.regex.Pattern;
 
 public class Task5 {
 
-    public boolean validateLicensePlates(String number) {
+    public boolean validateLicensePlates(String input) {
+
+        String number = input;
 
         if (number == null) {
             return false;

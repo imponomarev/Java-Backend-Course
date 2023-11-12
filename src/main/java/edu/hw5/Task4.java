@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Task4 {
 
-    public boolean validatePassword (String password) {
+    public boolean validatePassword(String password) {
 
         if (password == null) {
             return false;

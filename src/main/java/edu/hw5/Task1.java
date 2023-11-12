@@ -1,17 +1,22 @@
 package edu.hw5;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 
 public class Task1 {
 
     private static final int SIXTY = 60;
 
     private static final int TWENTY_FOUR = 24;
+
+    private static final String DATE_FORMAT = "yyyy-MM-dd, HH:mm";
+
+    private static final String SEPARATOR = " - ";
 
     public String averagePerSession(String[] input) throws ParseException {
 
@@ -24,8 +29,8 @@ public class Task1 {
 
         try {
             for (int i = 0; i < input.length; i++) {
-                dates.add(new SimpleDateFormat("yyyy-MM-dd, HH:mm").parse(input[i].split(" - ")[0]));
-                dates.add(new SimpleDateFormat("yyyy-MM-dd, HH:mm").parse(input[i].split(" - ")[1]));
+                dates.add(new SimpleDateFormat(DATE_FORMAT).parse(input[i].split(SEPARATOR)[0]));
+                dates.add(new SimpleDateFormat(DATE_FORMAT).parse(input[i].split(SEPARATOR)[1]));
             }
         } catch (ParseException e) {
             throw new ParseException("Failed to process session!", 0);

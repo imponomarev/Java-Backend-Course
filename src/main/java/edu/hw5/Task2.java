@@ -1,18 +1,21 @@
 package edu.hw5;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Task2 {
+
+    private static final int THIRTEEN = 13;
 
     public String findFridayThirteen(int year) {
 
         List<LocalDate> fridays = new ArrayList<>();
 
-        LocalDate date = LocalDate.of(year, 1, 13);
+        LocalDate date = LocalDate.of(year, 1, THIRTEEN);
 
         while (date.getYear() ==  year) {
 
@@ -31,7 +34,7 @@ public class Task2 {
 
         while (true) {
             LocalDate nextFriday = date.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-            if (nextFriday.getDayOfMonth() == 13) {
+            if (nextFriday.getDayOfMonth() == THIRTEEN) {
                 return nextFriday.toString();
             } else {
                 date = nextFriday;

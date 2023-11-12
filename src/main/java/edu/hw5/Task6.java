@@ -22,7 +22,7 @@ public class Task6 {
 
         for (char c : s.toCharArray()) {
 
-            if (COMMON_MATECHARACTERS.contains(c)){
+            if (COMMON_MATECHARACTERS.contains(c)) {
                 throw new RuntimeException();
             }
             regex.append(".*").append(Pattern.quote(Character.toString(c)));

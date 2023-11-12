@@ -9,7 +9,9 @@ import java.util.regex.Pattern;
 public class SlashDateParser2 extends DataParser {
 
     @Override
-    public Optional<LocalDate> parse(String input) {
+    public Optional<LocalDate> parse(String str) {
+
+        String input = str;
 
         input = input.trim();
 

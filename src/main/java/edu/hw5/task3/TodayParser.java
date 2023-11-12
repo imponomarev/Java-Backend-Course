@@ -6,7 +6,9 @@ import java.util.Optional;
 public class TodayParser extends DataParser {
 
     @Override
-    public Optional<LocalDate> parse(String input) {
+    public Optional<LocalDate> parse(String str) {
+
+        String input = str;
 
         input = input.trim();
 
