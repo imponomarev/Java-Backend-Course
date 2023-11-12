@@ -1,0 +1,31 @@
+package edu.hw5.task3;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class SlashDateParser1 extends DataParser {
+
+    @Override
+    public Optional<LocalDate> parse(String input) {
+
+        input = input.trim();
+
+        String regex = "^\\d{1}/\\d{1}/\\d{4}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+
+        try {
+            LocalDate date = LocalDate.parse(input, DateTimeFormatter.ofPattern("d/M/yyyy"));
+
+            if (matcher.matches()) {
+                return Optional.of(date);
+            }
+        } catch (Exception e) {
+
+        }
+        return Optional.empty();
+    }
+}
