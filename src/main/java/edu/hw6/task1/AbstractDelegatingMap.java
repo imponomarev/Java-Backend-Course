@@ -1,17 +1,18 @@
 package edu.hw6.task1;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 
 public abstract class AbstractDelegatingMap implements Map<String, String> {
 
     private Map<String, String> delegate;
 
 
-    protected AbstractDelegatingMap(Map <String, String> delegate) {
+    protected AbstractDelegatingMap(Map<String, String> delegate) {
         this.delegate = delegate;
     }
 

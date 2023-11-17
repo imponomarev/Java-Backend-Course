@@ -1,7 +1,5 @@
 package edu.hw6.task3;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystem;
@@ -9,10 +7,14 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.regex.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public interface AbstractFilter extends DirectoryStream.Filter<Path> {
 
-    static final Logger LOGGER = LogManager.getLogger();
+    Logger LOGGER = LogManager.getLogger();
+
+    String SIZE_ERROR = "Error during check size of file";
 
     boolean accept(Path entry) throws IOException;
 
@@ -20,20 +22,20 @@ public interface AbstractFilter extends DirectoryStream.Filter<Path> {
         return entry -> this.accept(entry) && other.accept(entry);
     }
 
-    static AbstractFilter regularFile = Files::isRegularFile;
+    AbstractFilter REGULAR_FILE = Files::isRegularFile;
 
-    static AbstractFilter directory = Files::isDirectory;
+    AbstractFilter DIRECTORY = Files::isDirectory;
 
-    static AbstractFilter readable = Files::isReadable;
+    AbstractFilter READABLE = Files::isReadable;
 
-    static AbstractFilter writable = Files::isWritable;
+    AbstractFilter WRITEABLE = Files::isWritable;
 
     static AbstractFilter largerThan(long size) {
         return entry -> {
             try {
                 return Files.size(entry) > size;
             } catch (IOException e) {
-                LOGGER.error("Error during check size of file");
+                LOGGER.error(SIZE_ERROR);
                 return false;
             }
         };
@@ -44,7 +46,7 @@ public interface AbstractFilter extends DirectoryStream.Filter<Path> {
             try {
                 return Files.size(entry) < size;
             } catch (IOException e) {
-                LOGGER.error("Error during check size of file");
+                LOGGER.error(SIZE_ERROR);
                 return false;
             }
         };

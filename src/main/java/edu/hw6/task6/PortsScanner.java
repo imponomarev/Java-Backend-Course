@@ -1,7 +1,5 @@
 package edu.hw6.task6;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.net.DatagramSocket;
@@ -11,6 +9,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PortsScanner {
 
@@ -35,6 +35,8 @@ public class PortsScanner {
     static {
         useKnownPorts();
     }
+
+    private PortsScanner() {}
 
     public static void infoAboutPorts() {
 

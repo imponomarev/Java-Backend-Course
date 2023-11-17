@@ -69,15 +69,15 @@ class Task3Test {
 
 
         //When
-        AbstractFilter filter1 = AbstractFilter.regularFile
-            .and(AbstractFilter.readable)
+        AbstractFilter filter1 = AbstractFilter.REGULAR_FILE
+            .and(AbstractFilter.READABLE)
             .and(AbstractFilter.largerThan(10L))
             .and(AbstractFilter.magicNumber(0x89, 'P', 'N', 'G'))
             .and(AbstractFilter.globMatches("*.png"))
             .and(AbstractFilter.regexMatches(".*temp.*"));
 
-        AbstractFilter filter2 = AbstractFilter.regularFile
-            .and(AbstractFilter.writable)
+        AbstractFilter filter2 = AbstractFilter.REGULAR_FILE
+            .and(AbstractFilter.WRITEABLE)
             .and(AbstractFilter.largerThan(5L))
             .and(AbstractFilter.magicNumber(0xEF, 'T', 'X', 'T'))
             .and(AbstractFilter.globMatches("*.txt"))

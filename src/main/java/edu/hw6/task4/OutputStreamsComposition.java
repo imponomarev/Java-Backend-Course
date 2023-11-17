@@ -1,7 +1,6 @@
 package edu.hw6.task4;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -12,10 +11,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class OutputStreamsComposition {
 
     private static final Logger LOGGER = LogManager.getLogger();
+
+    private OutputStreamsComposition() {}
 
     public static Path printTextInFileUsingStreams() throws IOException {
 
@@ -24,9 +27,9 @@ public class OutputStreamsComposition {
         try (
             OutputStream outputStream = Files.newOutputStream(filePath);
 
-            CheckedOutputStream checkedOutputStream = new CheckedOutputStream(outputStream, new CRC32());
+            CheckedOutputStream cos = new CheckedOutputStream(outputStream, new CRC32());
 
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(checkedOutputStream);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(cos);
 
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(bufferedOutputStream, StandardCharsets.UTF_8);
 
