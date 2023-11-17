@@ -10,8 +10,7 @@ class Task5Test {
     @Test
     void testHackerNewsTopStories() throws IOException, InterruptedException {
 
-        HackerNews hackerNews = new HackerNews();
-        long[] topStories = hackerNews.hackerNewsTopStories();
+        long[] topStories = HackerNews.hackerNewsTopStories();
 
         Assertions.assertNotNull(topStories);
         Assertions.assertNotEquals(0, topStories.length);
@@ -24,8 +23,8 @@ class Task5Test {
     @Test
     void testNews() throws IOException, InterruptedException {
 
-        HackerNews hackerNews = new HackerNews();
-        String result = hackerNews.news(37570037);
+
+        String result = HackerNews.news(37570037);
         String expected = "JDK 21 Release Notes";
 
         Assertions.assertNotNull(result);
@@ -36,8 +35,8 @@ class Task5Test {
     @Test
     void testInvalidNewsId() throws IOException, InterruptedException {
 
-        HackerNews hackerNews = new HackerNews();
-        String newsTitle = hackerNews.news(-12345678);
+
+        String newsTitle = HackerNews.news(-12345678);
 
         Assertions.assertNull(newsTitle);
     }

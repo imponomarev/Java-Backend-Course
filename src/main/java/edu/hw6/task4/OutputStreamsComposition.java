@@ -29,11 +29,11 @@ public class OutputStreamsComposition {
 
             CheckedOutputStream cos = new CheckedOutputStream(outputStream, new CRC32());
 
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(cos);
+            BufferedOutputStream bos = new BufferedOutputStream(cos);
 
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(bufferedOutputStream, StandardCharsets.UTF_8);
+            OutputStreamWriter osw = new OutputStreamWriter(bos, StandardCharsets.UTF_8);
 
-            PrintWriter printWriter = new PrintWriter(outputStreamWriter);
+            PrintWriter printWriter = new PrintWriter(osw);
 
         ) {
             printWriter.println("Programming is learned by writing programs. ― Brian Kernighan");
