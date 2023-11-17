@@ -10,7 +10,6 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -20,7 +19,6 @@ class Task3Test {
 
         Path filePath = Files.createTempFile(directory, prefix, suffix);
         File file = filePath.toFile();
-        file.canRead();
 
         try (FileOutputStream fos = new FileOutputStream(String.valueOf(file))) {
             fos.write(magicBytes);
@@ -65,7 +63,7 @@ class Task3Test {
 
         File file4 = createFile(dir, "temp4%-", ".txt", magicBytes2, fileSize3);
 
-        file4.canWrite();
+
 
 
         //When
@@ -103,10 +101,5 @@ class Task3Test {
             () -> Assertions.assertTrue(filteredFiles1.contains(file3)),
             () -> Assertions.assertEquals(file4, filteredFiles2.get(0))
         );
-
-        Files.walk(dir)
-            .sorted(Comparator.reverseOrder())
-            .map(Path::toFile)
-            .forEach(File::delete);
     }
 }
