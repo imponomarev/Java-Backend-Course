@@ -95,7 +95,11 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>1.78</version>
+        </dependency>    </dependencies>
 
     <build>
         <plugins>
