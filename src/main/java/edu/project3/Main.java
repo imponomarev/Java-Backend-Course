@@ -1,20 +1,22 @@
 package edu.project3;
 
 import com.beust.jcommander.JCommander;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
 
     private Main() {}
 
     private static final Logger LOGGER = LogManager.getLogger();
+
+    private static final int LIMIT = 5;
 
     public static void main(String[] args) {
         CommandLineParameters commandLineParameters = new CommandLineParameters();
@@ -30,7 +32,7 @@ public class Main {
 
                 return LogReader.readLog(commandLineParameters);
 
-            } catch (IOException | InterruptedException e ) {
+            } catch (IOException | InterruptedException e) {
                 LOGGER.error("Error during read loggs", e);
                 return null;
             }
@@ -38,11 +40,14 @@ public class Main {
 
         long totalRequests = LogReport.countRequests(logRecordsSupplier.get());
 
-        List<Map.Entry<String, Long>> mostFrequentSources = LogReport.findMostFrequentResources(logRecordsSupplier.get(), 5);
+        List<Map.Entry<String, Long>> mostFrequentSources = LogReport
+            .findMostFrequentResources(logRecordsSupplier.get(), LIMIT);
 
-        List<Map.Entry<Integer, Long>> mostFrequentCodes = LogReport.findMostFrequentStatusCode(logRecordsSupplier.get(), 5);
+        List<Map.Entry<Integer, Long>> mostFrequentCodes = LogReport.
+            findMostFrequentStatusCode(logRecordsSupplier.get(), LIMIT);
 
-        OptionalDouble averageResponseSize = LogReport.calculateAverageResponseSize(logRecordsSupplier.get());
+        OptionalDouble averageResponseSize = LogReport
+            .calculateAverageResponseSize(logRecordsSupplier.get());
 
         ReportPrinter.generateReport(commandLineParameters.getFilePaths(),
             logRecordsSupplier,

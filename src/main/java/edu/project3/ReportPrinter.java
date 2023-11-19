@@ -1,7 +1,6 @@
 package edu.project3;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -19,6 +18,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 
@@ -27,6 +28,10 @@ public class ReportPrinter {
     private ReportPrinter() {}
 
     private static final Logger LOGGER = LogManager.getLogger();
+
+    private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+    private static final String WALL_OF_TABLE = "|===";
 
     public static void generateReport(List<String> filePaths, Supplier<Stream<LogRecord>> logRecordsSupplier,
         long requestCount, double averageResponseSize,
@@ -55,8 +60,6 @@ public class ReportPrinter {
         long requestCount, double averageResponseSize,
         List<Map.Entry<String, Long>> mostFrequentSources, List<Map.Entry<Integer, Long>> mostFrequentCodes) {
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
         Path outputPath = Paths.get("report.md");
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(outputPath.toFile()))) {
@@ -78,11 +81,11 @@ public class ReportPrinter {
             // Dates
             writer.printf("| Начальная дата | %s |%n", minRecord
                 .map(r -> r.timestamp().toLocalDate()
-                    .format(dateFormatter)).orElse(""));
+                    .format(DATE_PATTERN)).orElse(""));
 
             writer.printf("| Конечная дата | %s |%n", maxRecord
                 .map(r -> r.timestamp().toLocalDate()
-                    .format(dateFormatter)).orElse(""));
+                    .format(DATE_PATTERN)).orElse(""));
 
             // Request count
             writer.printf("| Количество запросов | %,d |%n", requestCount);
@@ -113,7 +116,8 @@ public class ReportPrinter {
 
             // Most frequent codes
             for (Map.Entry<Integer, Long> entry : mostFrequentCodes) {
-                writer.printf("| %d | %s | %,d |%n", entry.getKey(), getStatusCodeName(entry.getKey()), entry.getValue());
+                writer.printf("| %d | %s | %,d |%n", entry.getKey(),
+                    getStatusCodeName(entry.getKey()), entry.getValue());
             }
 
             writer.println();
@@ -130,11 +134,11 @@ public class ReportPrinter {
         long requestCount, double averageResponseSize,
         List<Map.Entry<String, Long>> mostFrequentSources, List<Map.Entry<Integer, Long>> mostFrequentCodes) {
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
         Path outputPath = Paths.get("report.adoc");
 
-        try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(outputPath.toFile()), StandardCharsets.UTF_8))) {
+        try (PrintWriter writer = new PrintWriter(new OutputStreamWriter
+            (new FileOutputStream(outputPath.toFile()), StandardCharsets.UTF_8))) {
 
             Optional<LogRecord> minRecord = logRecordsSupplier.get().min(Comparator.comparing(LogRecord::timestamp));
             Optional<LogRecord> maxRecord = logRecordsSupplier.get().max(Comparator.comparing(LogRecord::timestamp));
@@ -142,7 +146,7 @@ public class ReportPrinter {
             // Header1
             writer.println("==== Общая информация");
             writer.println();
-            writer.println("|===");
+            writer.println(WALL_OF_TABLE);
             writer.println("| Метрика | Значение ");
 
             // File(s)
@@ -151,11 +155,11 @@ public class ReportPrinter {
             // Dates
             writer.printf("| Начальная дата | `%s`%n", minRecord
                 .map(r -> r.timestamp().toLocalDate()
-                    .format(dateFormatter)).orElse(""));
+                    .format(DATE_PATTERN)).orElse(""));
 
             writer.printf("| Конечная дата | `%s`%n", maxRecord
                 .map(r -> r.timestamp().toLocalDate()
-                    .format(dateFormatter)).orElse(""));
+                    .format(DATE_PATTERN)).orElse(""));
 
             // Request count
             writer.printf("| Количество запросов | %,d%n", requestCount);
@@ -163,12 +167,12 @@ public class ReportPrinter {
             // Average response size
             writer.printf("| Средний размер ответа | %.2f б%n", averageResponseSize);
 
-            writer.println("|===");
+            writer.println(WALL_OF_TABLE);
 
             // Header2
             writer.println("==== Запрашиваемые ресурсы");
             writer.println();
-            writer.println("|===");
+            writer.println(WALL_OF_TABLE);
             writer.println("| Ресурс | Количество");
 
             // Most frequent sources
@@ -176,11 +180,11 @@ public class ReportPrinter {
                 writer.printf("| `%s` | %,d%n", entry.getKey(), entry.getValue());
             }
 
-            writer.println("|===");
+            writer.println(WALL_OF_TABLE);
 
             writer.println("==== Коды ответа");
             writer.println();
-            writer.println("|===");
+            writer.println(WALL_OF_TABLE);
             writer.println("| Код | Имя | Количество");
 
             // Most frequent codes
@@ -188,7 +192,7 @@ public class ReportPrinter {
                 writer.printf("| %d | %s | %,d%n", entry.getKey(), getStatusCodeName(entry.getKey()), entry.getValue());
             }
 
-            writer.println("|===");
+            writer.println(WALL_OF_TABLE);
 
             writer.flush();
 

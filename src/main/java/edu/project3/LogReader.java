@@ -28,10 +28,15 @@ public class LogReader {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+    private static final int[] NUMBERS_OF_GROUPS = {
+        3, 4, 5, 6, 7, 8, 9
+    };
+
     private static final DateTimeFormatter LOG_DATE_TIME_FORMATTER =
         DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss XXXX", Locale.ENGLISH);
 
-    public static Stream<LogRecord> readLog(CommandLineParameters commandLineParameters) throws IOException, InterruptedException {
+    public static Stream<LogRecord> readLog(CommandLineParameters commandLineParameters)
+        throws IOException, InterruptedException {
 
         List<String> paths = commandLineParameters.getFilePaths();
 
@@ -164,15 +169,17 @@ public class LogReader {
 
             if (matcher.matches()) {
                 String ipAddress = matcher.group(1);
-                String remoteUser = matcher.group(3);
-                OffsetDateTime timestamp = OffsetDateTime.parse(matcher.group(4), LOG_DATE_TIME_FORMATTER);
-                String request = matcher.group(5);
-                int statusCode = Integer.parseInt(matcher.group(6));
-                long bytesSent = Long.parseLong(matcher.group(7));
-                String referer = matcher.group(8);
-                String userAgent = matcher.group(9);
+                String remoteUser = matcher.group(NUMBERS_OF_GROUPS[0]);
+                OffsetDateTime timestamp = OffsetDateTime.parse(matcher
+                    .group(NUMBERS_OF_GROUPS[1]), LOG_DATE_TIME_FORMATTER);
+                String request = matcher.group(NUMBERS_OF_GROUPS[2]);
+                int statusCode = Integer.parseInt(matcher.group(NUMBERS_OF_GROUPS[3]));
+                long bytesSent = Long.parseLong(matcher.group(NUMBERS_OF_GROUPS[4]));
+                String referer = matcher.group(NUMBERS_OF_GROUPS[5]);
+                String userAgent = matcher.group(NUMBERS_OF_GROUPS[6]);
 
-                return new LogRecord(ipAddress, remoteUser, timestamp, request, statusCode, bytesSent, referer, userAgent);
+                return new LogRecord(ipAddress, remoteUser, timestamp,
+                    request, statusCode, bytesSent, referer, userAgent);
             } else {
                 LOGGER.error("Error during parsing logs");
                 return null;
