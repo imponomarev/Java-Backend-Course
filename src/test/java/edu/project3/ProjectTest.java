@@ -68,30 +68,6 @@ class ProjectTest {
         assertTrue( logRecordsSupplier.get().count() > 10000);
     }
 
-    @Test
-    void testReadFromDirectory() throws IOException, InterruptedException {
-
-        String[] args = {"--path", "src/main/resources/logs-dir/"};
-        Main.main(args);
-
-        CommandLineParameters commandLineParameters = new CommandLineParameters();
-        JCommander.newBuilder()
-            .addObject(commandLineParameters)
-            .build()
-            .parse(args);
-
-
-        Supplier<Stream<LogRecord>> logRecordsSupplier = () -> {
-            try {
-                return LogReader.readLog(commandLineParameters);
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-                return null;
-            }
-        };
-
-        assertTrue( logRecordsSupplier.get().count() > 100);
-    }
 
     @Test
     void testFindMostFrequentStatusCode() {

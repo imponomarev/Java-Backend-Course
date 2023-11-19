@@ -28,9 +28,19 @@ public class LogReader {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static final int[] NUMBERS_OF_GROUPS = {
-        3, 4, 5, 6, 7, 8, 9
-    };
+    private static final int REMOTE_USER = 3;
+
+    private static final int TIMESTAMP = 4;
+
+    private static final int REQUEST = 5;
+
+    private static final int STATUS_CODE = 6;
+
+    private static final int BYTES_SENT = 7;
+
+    private static final int REFERER = 8;
+
+    private static final int USER_AGENT = 9;
 
     private static final DateTimeFormatter LOG_DATE_TIME_FORMATTER =
         DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss XXXX", Locale.ENGLISH);
@@ -169,14 +179,14 @@ public class LogReader {
 
             if (matcher.matches()) {
                 String ipAddress = matcher.group(1);
-                String remoteUser = matcher.group(NUMBERS_OF_GROUPS[0]);
+                String remoteUser = matcher.group(REMOTE_USER);
                 OffsetDateTime timestamp = OffsetDateTime.parse(matcher
-                    .group(NUMBERS_OF_GROUPS[1]), LOG_DATE_TIME_FORMATTER);
-                String request = matcher.group(NUMBERS_OF_GROUPS[2]);
-                int statusCode = Integer.parseInt(matcher.group(NUMBERS_OF_GROUPS[3]));
-                long bytesSent = Long.parseLong(matcher.group(NUMBERS_OF_GROUPS[4]));
-                String referer = matcher.group(NUMBERS_OF_GROUPS[5]);
-                String userAgent = matcher.group(NUMBERS_OF_GROUPS[6]);
+                    .group(TIMESTAMP), LOG_DATE_TIME_FORMATTER);
+                String request = matcher.group(REQUEST);
+                int statusCode = Integer.parseInt(matcher.group(STATUS_CODE));
+                long bytesSent = Long.parseLong(matcher.group(BYTES_SENT));
+                String referer = matcher.group(REFERER);
+                String userAgent = matcher.group(USER_AGENT);
 
                 return new LogRecord(ipAddress, remoteUser, timestamp,
                     request, statusCode, bytesSent, referer, userAgent);

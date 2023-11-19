@@ -137,8 +137,8 @@ public class ReportPrinter {
 
         Path outputPath = Paths.get("report.adoc");
 
-        try (PrintWriter writer = new PrintWriter(new OutputStreamWriter
-            (new FileOutputStream(outputPath.toFile()), StandardCharsets.UTF_8))) {
+        try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(
+            new FileOutputStream(outputPath.toFile()), StandardCharsets.UTF_8))) {
 
             Optional<LogRecord> minRecord = logRecordsSupplier.get().min(Comparator.comparing(LogRecord::timestamp));
             Optional<LogRecord> maxRecord = logRecordsSupplier.get().max(Comparator.comparing(LogRecord::timestamp));

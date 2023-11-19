@@ -43,8 +43,8 @@ public class Main {
         List<Map.Entry<String, Long>> mostFrequentSources = LogReport
             .findMostFrequentResources(logRecordsSupplier.get(), LIMIT);
 
-        List<Map.Entry<Integer, Long>> mostFrequentCodes = LogReport.
-            findMostFrequentStatusCode(logRecordsSupplier.get(), LIMIT);
+        List<Map.Entry<Integer, Long>> mostFrequentCodes = LogReport
+            .findMostFrequentStatusCode(logRecordsSupplier.get(), LIMIT);
 
         OptionalDouble averageResponseSize = LogReport
             .calculateAverageResponseSize(logRecordsSupplier.get());
