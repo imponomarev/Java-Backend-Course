@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 
 class Task2Test {
 
+    Task2 task2 = new Task2();
+
     @Test
     void findFridayThirteenTest() {
-
-        //Given
-        Task2 task2 = new Task2();
 
         //When
         String result =  task2.findFridayThirteen(1925);
@@ -21,9 +20,6 @@ class Task2Test {
     @Test
     void findFridayThirteenTest2() {
 
-        //Given
-        Task2 task2 = new Task2();
-
         //When
         String result =  task2.findFridayThirteen(2024);
 
@@ -32,9 +28,6 @@ class Task2Test {
     }
     @Test
     void findFridayThirteenTest3() {
-
-        //Given
-        Task2 task2 = new Task2();
 
         //When
         String result =  task2.findFridayThirteen(1926);
@@ -45,8 +38,6 @@ class Task2Test {
 
     @Test
     void findNearFridayThirteenTest() {
-        //Given
-        Task2 task2 = new Task2();
 
         //When
         String result = task2.findNearFridayThirteen("1925-02-13");
@@ -57,8 +48,6 @@ class Task2Test {
 
     @Test
     void findNearFridayThirteenTest2() {
-        //Given
-        Task2 task2 = new Task2();
 
         //When
         String result = task2.findNearFridayThirteen("1925-11-13");

@@ -6,11 +6,12 @@ import java.text.ParseException;
 
 class Task1Test {
 
+    Task1 task1 = new Task1();
+
     @Test
     void averagePerSessionTest1() throws ParseException {
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {"2022-03-12, 20:20 - 2022-03-12, 23:50", "2022-04-01, 21:30 - 2022-04-02, 01:20"};
 
         //When
@@ -24,7 +25,6 @@ class Task1Test {
     void averagePerSessionTest2() throws ParseException {
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {"2022-03-12, 20:20 - 2022-03-12, 20:20", "2022-04-01, 21:30 - 2022-04-01, 21:30"};
 
         //When
@@ -38,7 +38,6 @@ class Task1Test {
     void averagePerSessionTest3() throws ParseException {
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {"2022-03-11, 20:20 - 2022-03-12, 23:50", "2022-04-01, 21:30 - 2022-04-02, 21:30"};
 
         //When
@@ -52,7 +51,6 @@ class Task1Test {
     void averagePerSessionTest4() throws ParseException {
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {};
 
         //When
@@ -66,7 +64,6 @@ class Task1Test {
     void averagePerSessionTest5(){
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {"2022-03-12, 20:20 - 2022-03-12, 23:50", ""};
 
         //Then
@@ -77,7 +74,6 @@ class Task1Test {
     void averagePerSessionTest6() throws ParseException {
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {"2022-03-12, 20:20 - 2022-03-12, 23:50"};
 
         //When
@@ -91,7 +87,6 @@ class Task1Test {
     void averagePerSessionTest7() throws ParseException {
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {"2022-03-12, 10:00 - 2022-03-12, 12:30",
             "2022-03-12, 14:00 - 2022-03-12, 16:30",
             "2022-03-12, 18:00 - 2022-03-12, 20:30",
@@ -108,7 +103,6 @@ class Task1Test {
     void averagePerSessionTest8() throws ParseException {
 
         //Given
-        Task1 task1 = new Task1();
         String[] input = {"2022-03-12, 10:00 - 2022-03-12, 10:03",
             "2022-03-12, 12:00 - 2022-03-12, 12:05",
             "2022-03-12, 14:00 - 2022-03-12, 14:10"};

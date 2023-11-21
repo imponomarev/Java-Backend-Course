@@ -12,11 +12,19 @@ import edu.hw5.task3.YesterdayParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 class Task3Test {
 
-    private DataParser initializeParsers() {
+    List<DataParser> parsers = initializeParsersList();
+
+    DataParser hyphenParser1 = addParsersToList(parsers);
+
+    private static List<DataParser> initializeParsersList() {
+
+        List<DataParser> parsers = new ArrayList<>();
 
         DataParser hyphenParser1 = new HyphenDateParser1();
         DataParser hyphenParser2 = new HyphenDateParser2();
@@ -27,23 +35,39 @@ class Task3Test {
         DataParser yesterdayParser = new YesterdayParser();
         DataParser someDaysAgoParser = new SomeDaysAgoParser();
 
-        hyphenParser1.setNextParser(hyphenParser2);
-        hyphenParser2.setNextParser(slashParser1);
-        slashParser1.setNextParser(slashParser2);
-        slashParser2.setNextParser(tomorrowParser);
-        tomorrowParser.setNextParser(todayParser);
-        todayParser.setNextParser(yesterdayParser);
-        yesterdayParser.setNextParser(someDaysAgoParser);
+        parsers.add(hyphenParser1);
+        parsers.add(hyphenParser2);
+        parsers.add(slashParser1);
+        parsers.add(slashParser2);
+        parsers.add(tomorrowParser);
+        parsers.add(todayParser);
+        parsers.add(yesterdayParser);
+        parsers.add(someDaysAgoParser);
 
-        return hyphenParser1;
+        return parsers;
+    }
+
+    public static DataParser addParsersToList(List<DataParser> parsers) {
+
+        if (parsers.isEmpty()) {
+            return null;
+        }
+
+        DataParser previousParser = null;
+        for (DataParser parser : parsers) {
+            if (previousParser != null) {
+                previousParser.setNextParser(parser);
+            }
+            previousParser = parser;
+        }
+
+        return parsers.get(0);
     }
 
     @Test
     void parseHyphenDate1() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "2020-10-10";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.of(2020, 10, 10));
@@ -60,8 +84,6 @@ class Task3Test {
     void parseHyphenDate2() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "2020-12-2";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.of(2020, 12, 2));
@@ -78,8 +100,6 @@ class Task3Test {
     void parseSlashDate1() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "1/3/1976";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.of(1976, 3, 1));
@@ -96,8 +116,6 @@ class Task3Test {
     void parseSlashDate2() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "1/3/20";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.of(2020, 3, 1));
@@ -114,8 +132,6 @@ class Task3Test {
     void parseTomorrowDate() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "tomorrow";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.now().plusDays(1));
@@ -132,8 +148,6 @@ class Task3Test {
     void parseTodayDate() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "today";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.now());
@@ -150,8 +164,6 @@ class Task3Test {
     void parseYesterdayDate() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "yesterday";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.now().minusDays(1));
@@ -168,8 +180,6 @@ class Task3Test {
     void parseSomeDaysAgoDate1() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "1 day ago";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.now().minusDays(1));
@@ -186,8 +196,6 @@ class Task3Test {
     void parseSomeDaysAgoDate2() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "2234 days ago";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.now().minusDays(2234));
@@ -204,8 +212,6 @@ class Task3Test {
     void parseWithUnsuccessfulResult() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "11.22.33";
 
         Optional<LocalDate> expected = Optional.empty();
@@ -222,8 +228,6 @@ class Task3Test {
     void parseWithEmptyInput() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "";
 
         Optional<LocalDate> expected = Optional.empty();
@@ -240,8 +244,6 @@ class Task3Test {
     void parseDateWithSpaceInBeginning() {
 
         //Given
-        DataParser hyphenParser1 = initializeParsers();
-
         String input = "    1/3/1976  ";
 
         Optional<LocalDate> expected = Optional.of(LocalDate.of(1976, 3, 1));

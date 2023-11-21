@@ -7,16 +7,27 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class Task5Test {
 
+    Task5 task5 = new Task5();
+
     @ParameterizedTest
     @CsvSource({"'А123ВЕ777','true'", "'А123ВЕ45', 'true'",
-    "'О777ОО177', 'true'", "'123АВЕ777', 'false'",
-    "'А123ВГ77', 'false'", "'А123ВЕ7777', 'false'",
-    "'К456МН01', 'true'", "'', 'false'",
+    "'О777ОО177', 'true'", "'К456МН01', 'true'",
     "'А123ВЕ777   ', 'true'"})
-    void validateLicensePlatesTest(String number, boolean expected) {
+    void validateLicensePlatesTestReturnsTrue(String number, boolean expected) {
 
-        //Given
-        Task5 task5 = new Task5();
+        //When
+        boolean result = task5.validateLicensePlates(number);
+
+        //Then
+        Assertions.assertEquals(expected, result);
+
+    }
+
+    @ParameterizedTest
+    @CsvSource({"'123АВЕ777', 'false'",
+        "'А123ВГ77', 'false'", "'А123ВЕ7777', 'false'",
+        "'', 'false'"})
+    void validateLicensePlatesTestReturnsFalse(String number, boolean expected) {
 
         //When
         boolean result = task5.validateLicensePlates(number);
@@ -27,10 +38,9 @@ class Task5Test {
     }
 
     @Test
-    void validateLicensePlatesTest2() {
+    void validateLicensePlatesWitnNullTest() {
 
         //Given
-        Task5 task5 = new Task5();
         boolean expected = false;
 
         //When

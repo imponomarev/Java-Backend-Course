@@ -7,17 +7,16 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class Task4Test {
 
+    Task4 task4 = new Task4();
+
     @ParameterizedTest
     @CsvSource({"'Hello~', 'true'", "'asdcv!', 'true'",
     "'@sjsajd', 'true'", "'pass#', 'true'", "'asdsad$', 'true'",
     "'oracle%', 'true'", "'bip^', 'true'", "'input&', 'true'",
-    "'duck*', 'true'", "'|asdasds', 'true'", "'asdasd', 'false'",
-    "' hello~!@#$%^&*|', 'true'", "'', 'false'"})
+    "'duck*', 'true'", "'|asdasds', 'true'",
+    "' hello~!@#$%^&*|', 'true'"})
 
-    void validatePasswordTest(String password, boolean expected) {
-
-        //Given
-        Task4 task4 = new Task4();
+    void validatePasswordContainsNecessarySymbolsTest(String password, boolean expected) {
 
         //When
         boolean result = task4.validatePassword(password);
@@ -26,11 +25,24 @@ class Task4Test {
         Assertions.assertEquals(expected, result);
     }
 
+
+    @ParameterizedTest
+    @CsvSource({"'asdasd', 'false'", "'', 'false'"})
+    void validatePasswordDoesNotContainsNecessarySymbolsTest(String password, boolean expected) {
+
+        //When
+        boolean result = task4.validatePassword(password);
+
+        //Then
+        Assertions.assertEquals(expected, result);
+    }
+
+
+
     @Test
-    void validatePasswordTest2() {
+    void validatePasswordWithNullTest() {
 
         //Given
-        Task4 task4 = new Task4();
         boolean expected = false;
 
         //When

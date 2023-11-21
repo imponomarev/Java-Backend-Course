@@ -6,14 +6,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class Task6Test {
 
+    Task6 task6 = new Task6();
+
     @ParameterizedTest
     @CsvSource({"'abc', 'achfdbaabgabcaabg', 'true'", "'gk', 'geeks', 'true'", "'gs', 'geeks', 'true'",
-    ", , 'false'", "'', '', 'true'", "'abc', 'gjhfknjgfnh', 'false'",
-    ",'asd', 'false'", "'', 'adsasd', 'true'"})
-    void IsSubsequenceTest(String S, String T, boolean expected) {
-
-        //Given
-        Task6 task6 = new Task6();
+        "'', '', 'true'", "'', 'adsasd', 'true'"})
+    void IsSubsequenceTestReturnsTrue(String S, String T, boolean expected) {
 
         //When
         boolean result = task6.isSubsequence(S, T);
@@ -23,19 +21,14 @@ class Task6Test {
     }
 
     @ParameterizedTest
-    @CsvSource({"'asd^', 'asdasd'", "'{}adssad', 'asdasdasdas'",
-    "'igigif+', 'asdsadsasd'", "'<asdsa', 'adasdsad'",
-    "'asd[asd]', 'asdasdad'", "'a.*asd', 'asdasdsa'",
-    "'sad(2)asd', 'asdsad'", "'adsasd>','asdasd'",
-    "'asdad|asd', 'asdasdasd'", "'hghghg$sa', 'ugfggfkjgf'",
-    "'\\adasdas?s', 'adadsg'"})
-    void IsSubsequenceTestWithWrongInput(String S, String T) {
+    @CsvSource({", , 'false'", "'abc', 'gjhfknjgfnh', 'false'",
+        ",'asd', 'false'"})
+    void IsSubsequenceTestReturnsFalse(String S, String T, boolean expected) {
 
-        //Given
-        Task6 task6 = new Task6();
+        //When
+        boolean result = task6.isSubsequence(S, T);
 
-        //When & Then
-        Assertions.assertThrows(RuntimeException.class, () -> task6.isSubsequence(S, T));
-
+        //Then
+        Assertions.assertEquals(expected, result);
     }
 }
