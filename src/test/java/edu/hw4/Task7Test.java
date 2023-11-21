@@ -12,6 +12,8 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task7Test {
 
+    Task7 task7 = new Task7();
+
     @Test
     void getCertainOldestAnimalTest() {
 
@@ -24,8 +26,6 @@ class Task7Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
 
-        Task7 task7 = new Task7();
-
         Animal result = task7.getCertainOldestAnimal(animals, 2);
 
         Assertions.assertEquals(cat2, result);
@@ -33,8 +33,6 @@ class Task7Test {
 
     @Test
     void emptyListTest() {
-
-        Task7 task7 = new Task7();
 
         List<Animal> animals = new ArrayList<>();
 
@@ -55,8 +53,6 @@ class Task7Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
 
-        Task7 task7 = new Task7();
-
         Animal result = task7.getCertainOldestAnimal(animals, -2);
 
         Assertions.assertEquals(null, result);
@@ -73,8 +69,6 @@ class Task7Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 2, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task7 task7 = new Task7();
 
         Animal result = task7.getCertainOldestAnimal(animals, 100);
 

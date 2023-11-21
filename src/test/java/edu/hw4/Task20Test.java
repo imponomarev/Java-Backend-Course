@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import edu.hw4.validationTask19.AgeValidationError;
 import edu.hw4.validationTask19.HeightValidationError;
-import edu.hw4.validationTask19.ValidatorError;
+import edu.hw4.validationTask19.ValidationError;
 import edu.hw4.validationTask19.WeightValidationError;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,6 +21,10 @@ import static edu.hw4.Animal.Type.FISH;
 import static edu.hw4.Animal.Type.SPIDER;
 
 class Task20Test {
+
+    Task19 task19 = new Task19();
+    Task20 task20 = new Task20();
+
 
     @Test
     void validateAnimalsTest() {
@@ -41,23 +45,20 @@ class Task20Test {
         List<Animal> animals =
             Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2, fish1, fish2, fish3, fish4);
 
-        Task19 task19 = new Task19();
-        Task20 task20 = new Task20();
+        Map<String, Set<ValidationError>> resultOfValidation = task19.validateAnimals(animals);
 
-        Map<String, Set<ValidatorError>> resultOfValidation = task19.validateAnimals(animals);
+        Map<String, Set<ValidationError>> expected = new HashMap<>();
 
-        Map<String, Set<ValidatorError>> expected = new HashMap<>();
-
-        Set<ValidatorError> errorsSet1 = new HashSet<>();
+        Set<ValidationError> errorsSet1 = new HashSet<>();
         errorsSet1.add(new AgeValidationError());
 
-        Set<ValidatorError> errorsSet2 = new HashSet<>();
+        Set<ValidationError> errorsSet2 = new HashSet<>();
         errorsSet2.add(new HeightValidationError());
 
-        Set<ValidatorError> errorsSet3 = new HashSet<>();
+        Set<ValidationError> errorsSet3 = new HashSet<>();
         errorsSet3.add(new WeightValidationError());
 
-        Set<ValidatorError> errorsSet4 = new HashSet<>();
+        Set<ValidationError> errorsSet4 = new HashSet<>();
         errorsSet4.add(new AgeValidationError());
         errorsSet4.add(new HeightValidationError());
 

@@ -11,6 +11,8 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task14Test {
 
+    Task14 task14 = new Task14();
+
     @Test
     void isThereDogAboveKTest() {
 
@@ -22,8 +24,6 @@ class Task14Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 11, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task14 task14 = new Task14();
 
         Boolean result = task14.isThereDogAboveK(animals, 101);
 
@@ -42,8 +42,6 @@ class Task14Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
 
-        Task14 task14 = new Task14();
-
         Boolean result = task14.isThereDogAboveK(animals, -10);
 
         Assertions.assertTrue(result);
@@ -60,8 +58,6 @@ class Task14Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 11, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task14 task14 = new Task14();
 
         Boolean result = task14.isThereDogAboveK(animals, 25);
 

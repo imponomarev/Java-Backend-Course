@@ -14,6 +14,8 @@ import static edu.hw4.Animal.Type.SPIDER;
 
 class Task17Test {
 
+    Task17 task17 = new Task17();
+
     @Test
     void spidersBiteMoreOftenThanDogsTestTrue() {
 
@@ -28,8 +30,6 @@ class Task17Test {
 
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2);
-
-        Task17 task17 = new Task17();
 
         Boolean result = task17.spidersBiteMoreOftenThanDogs(animals);
 
@@ -52,8 +52,6 @@ class Task17Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2);
 
-        Task17 task17 = new Task17();
-
         Boolean result = task17.spidersBiteMoreOftenThanDogs(animals);
 
         Assertions.assertFalse(result);
@@ -70,8 +68,6 @@ class Task17Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 11, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task17 task17 = new Task17();
 
         Boolean result = task17.spidersBiteMoreOftenThanDogs(animals);
 

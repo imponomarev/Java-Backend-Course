@@ -13,6 +13,9 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task15Test {
 
+    Task15 task15 = new Task15();
+
+
     @Test
     void getTotalWeightOfAnimalsOfEachSpeciesAtCertainAgeTest() {
 
@@ -24,8 +27,6 @@ class Task15Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 11, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task15 task15 = new Task15();
 
         Map<Animal.Type, Integer> result = task15.getTotalWeightOfAnimalsOfEachSpecies(animals, 0, 4);
 

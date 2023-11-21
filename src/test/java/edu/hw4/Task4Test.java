@@ -13,6 +13,8 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task4Test {
 
+    Task4 task4 = new Task4();
+
     @Test
     void longestNameTest() {
 
@@ -24,7 +26,6 @@ class Task4Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2);
 
-        Task4 task4 = new Task4();
 
         Animal result = task4.getLongestName(animals);
 
@@ -34,13 +35,11 @@ class Task4Test {
     @Test
     void emptyListTest() {
 
-        Task4 task4 = new Task4();
-
         List<Animal> animals = new ArrayList<>();
 
         Animal result = task4.getLongestName(animals);
 
-        Assertions.assertEquals(null, result);
+        Assertions.assertNull(result);
     }
 
 }

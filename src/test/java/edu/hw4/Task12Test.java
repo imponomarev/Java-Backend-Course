@@ -11,6 +11,9 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task12Test {
 
+    Task12 task12 = new Task12();
+
+
     @Test
     void getWeightExceedsHeightTest() {
 
@@ -22,8 +25,6 @@ class Task12Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 11, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task12 task12 = new Task12();
 
         Integer result = task12.getWeightExceedsHeight(animals);
 

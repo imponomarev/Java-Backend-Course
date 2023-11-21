@@ -13,8 +13,10 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task8Test {
 
+    Task8 task8 = new Task8();
+
     @Test
-    void getHeviestAnimalSortedByHeightTest() {
+    void getHeaviestAnimalSortedByHeightTest() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 3, true);
         Animal cat2 = new Animal("Bobbos", CAT, M, 4, 20, 4, true);
@@ -25,9 +27,7 @@ class Task8Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
 
-        Task8 task8 = new Task8();
-
-        Optional<Animal> result = task8.getHeviestAnimalSortedByHeight(animals, 40);
+        Optional<Animal> result = task8.getHeaviestAnimalBelowK(animals, 40);
 
         Assertions.assertEquals(Optional.of(cat2), result);
     }
@@ -35,17 +35,15 @@ class Task8Test {
     @Test
     void emptyListTest() {
 
-        Task8 task8 = new Task8();
-
         List<Animal> animals = new ArrayList<>();
 
-        Optional<Animal> result = task8.getHeviestAnimalSortedByHeight(animals, 1);
+        Optional<Animal> result = task8.getHeaviestAnimalBelowK(animals, 1);
 
         Assertions.assertEquals(Optional.empty(), result);
     }
 
     @Test
-    void getHeviestAnimalSortedByHeightTestWithNegK() {
+    void getHeaviestAnimalSortedByHeightTestWithNegK() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 3, true);
         Animal cat2 = new Animal("Bobbos", CAT, M, 4, 20, 4, true);
@@ -56,10 +54,8 @@ class Task8Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
 
-        Task8 task8 = new Task8();
+        Optional<Animal> result = task8.getHeaviestAnimalBelowK(animals, -40);
 
-        Optional<Animal> result = task8.getHeviestAnimalSortedByHeight(animals, -40);
-
-        Assertions.assertEquals(null, result);
+        Assertions.assertEquals(Optional.empty(), result);
     }
 }

@@ -6,12 +6,15 @@ import java.util.Optional;
 
 public class Task8 {
 
-    public Optional<Animal> getHeviestAnimalSortedByHeight(List<Animal> animals, int k) {
+    public Optional<Animal> getHeaviestAnimalBelowK(List<Animal> animals, int k) {
 
         if (k < 0) {
-            return null;
+            return Optional.empty();
         }
 
-        return animals.stream().filter(animal -> animal.height() < k).max(Comparator.comparing(Animal::weight));
+        return animals
+            .stream()
+            .filter(animal -> animal.height() < k)
+            .max(Comparator.comparing(Animal::weight));
     }
 }

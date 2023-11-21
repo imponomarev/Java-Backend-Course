@@ -12,6 +12,8 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task16Test {
 
+    Task16 task16 = new Task16();
+
     @Test
     void sortedByTypeGenderNameTest() {
 
@@ -23,8 +25,6 @@ class Task16Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 11, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task16 task16 = new Task16();
 
         List<Animal> result = task16.sortedByTypeGenderName(animals);
 

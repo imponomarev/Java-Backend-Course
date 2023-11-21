@@ -11,6 +11,8 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task2Test {
 
+    Task2 task2 = new Task2();
+
     @Test
     void weightComparatorTest() {
 
@@ -19,8 +21,6 @@ class Task2Test {
         Animal bird = new Animal("Kesha", BIRD, M, 1, 10, 1, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird);
-
-        Task2 task2 = new Task2();
 
         List<Animal> expected = Arrays.asList(dog, cat);
 

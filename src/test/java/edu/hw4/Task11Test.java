@@ -12,6 +12,8 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task11Test {
 
+    Task11 task11 = new Task11();
+
     @Test
     void getTallAndBitingTest() {
 
@@ -23,8 +25,6 @@ class Task11Test {
         Animal bird2 = new Animal("Golub", BIRD, M, 0, 10, 2, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
-
-        Task11 task11 = new Task11();
 
         List<Animal> result = task11.getTallAndBiting(animals);
 

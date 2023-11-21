@@ -13,6 +13,8 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task5Test {
 
+    Task5 task5 = new Task5();
+
     @Test
     void preferentialSexIsMaleTest() {
 
@@ -24,11 +26,9 @@ class Task5Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2);
 
-        Task5 task5 = new Task5();
-
         Animal.Sex result = task5.preferentialSex(animals);
 
-        Assertions.assertEquals(result, M);
+        Assertions.assertEquals(M, result);
     }
 
     @Test
@@ -42,17 +42,13 @@ class Task5Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2);
 
-        Task5 task5 = new Task5();
-
         Animal.Sex result = task5.preferentialSex(animals);
 
-        Assertions.assertEquals(result, F);
+        Assertions.assertEquals(F, result);
     }
 
     @Test
     void emptyListTest() {
-
-        Task5 task5 = new Task5();
 
         List<Animal> animals = new ArrayList<>();
 

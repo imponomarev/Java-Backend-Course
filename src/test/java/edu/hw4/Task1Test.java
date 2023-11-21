@@ -10,6 +10,8 @@ import static edu.hw4.Animal.Type.*;
 
 class Task1Test {
 
+    Task1 task1 = new Task1();
+
     @Test
     void heightComparatorTest() {
 
@@ -18,8 +20,6 @@ class Task1Test {
         Animal bird = new Animal("Kesha", BIRD, M, 1, 10, 1, false);
 
         List<Animal> animals = Arrays.asList(cat, dog, bird);
-
-        Task1 task1 = new Task1();
 
         List<Animal> expected = Arrays.asList(bird, cat, dog);
 

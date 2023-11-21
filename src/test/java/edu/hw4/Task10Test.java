@@ -12,6 +12,9 @@ import static edu.hw4.Animal.Type.DOG;
 
 class Task10Test {
 
+    Task10 task10 = new Task10();
+
+
     @Test
     void matchingPawsToAgeTest() {
 
@@ -24,8 +27,6 @@ class Task10Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2, bird2);
 
-        Task10 task10 = new Task10();
-
         List<Animal> result = task10.matchingPawsToAge(animals);
 
         List<Animal> expected = Arrays.asList(cat, dog, bird, bird2);
@@ -35,8 +36,6 @@ class Task10Test {
 
     @Test
     void emptyListTest() {
-
-        Task10 task10 = new Task10();
 
         List<Animal> animals = new ArrayList<>();
 

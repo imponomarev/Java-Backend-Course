@@ -16,8 +16,10 @@ import static edu.hw4.Animal.Type.SPIDER;
 
 class Task18Test {
 
+    Task18 task18 = new Task18();
+
     @Test
-    void getHaviestFishTest() {
+    void getHeaviestFishTest() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 21, true);
         Animal cat2 = new Animal("Tommy", CAT, F, 4, 10, 15, true);
@@ -36,15 +38,13 @@ class Task18Test {
         List<Animal> animals2 = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2, fish3);
         List<Animal> animals3 = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2, fish4);
 
-        Task18 task18 = new Task18();
-
         Animal result = task18.getHaviestFish(animals1, animals2, animals3);
 
         Assertions.assertEquals(fish3, result);
     }
 
     @Test
-    void getHaviestFishTestWithEmptyList() {
+    void getHeaviestFishTestWithEmptyList() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 21, true);
         Animal cat2 = new Animal("Tommy", CAT, F, 4, 10, 15, true);
@@ -64,15 +64,13 @@ class Task18Test {
         List<Animal> animals3 = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2, fish4);
         List<Animal> animals4 = new ArrayList<>();
 
-        Task18 task18 = new Task18();
-
         Animal result = task18.getHaviestFish(animals1, animals2, animals3, animals4);
 
         Assertions.assertEquals(fish3, result);
     }
 
     @Test
-    void getHaviestFishTestWithListsWithoutFish() {
+    void getHeaviestFishTestWithListsWithoutFish() {
 
         Animal cat = new Animal("Tom", CAT, M, 5, 20, 21, true);
         Animal cat2 = new Animal("Tommy", CAT, F, 4, 10, 15, true);
@@ -86,8 +84,6 @@ class Task18Test {
         List<Animal> animals1 = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2);
         List<Animal> animals2 = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2);
         List<Animal> animals3 = Arrays.asList(cat, dog, bird, cat2, dog2, bird2, spider, spider2);
-
-        Task18 task18 = new Task18();
 
         Animal result = task18.getHaviestFish(animals1, animals2, animals3);
 

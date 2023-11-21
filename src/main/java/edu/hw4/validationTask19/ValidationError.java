@@ -2,7 +2,7 @@ package edu.hw4.validationTask19;
 
 import java.util.Objects;
 
-public abstract class ValidatorError {
+public abstract class ValidationError {
 
     public abstract String getNameOfField();
 
@@ -20,7 +20,7 @@ public abstract class ValidatorError {
             return false;
         }
 
-        ValidatorError other = (ValidatorError) obj;
+        ValidationError other = (ValidationError) obj;
         return Objects.equals(getNameOfField(), other.getNameOfField());
     }
 }

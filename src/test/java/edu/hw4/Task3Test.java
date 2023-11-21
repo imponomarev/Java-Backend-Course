@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Arrays;
@@ -12,6 +11,9 @@ import static edu.hw4.Animal.Type.CAT;
 import static edu.hw4.Animal.Type.DOG;
 
 class Task3Test {
+
+    Task3 task3 = new Task3();
+
     @Test
     void countingAnimalsTest() {
 
@@ -23,7 +25,6 @@ class Task3Test {
 
         List<Animal> animals = Arrays.asList(cat, dog, bird, cat2, dog2);
 
-        Task3 task3 = new Task3();
 
         Map<Animal.Type, Integer> expected = Map.of(CAT, 2, DOG, 2, BIRD, 1);
 
