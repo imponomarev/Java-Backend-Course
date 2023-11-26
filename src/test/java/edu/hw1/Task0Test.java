@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-public class Task0Test {
+class Task0Test {
 
     @Test
     void testForLogger() {
