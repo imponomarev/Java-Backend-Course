@@ -1,8 +1,8 @@
 package edu.hw7.task4;
 
+import java.util.concurrent.ThreadLocalRandom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class PiApproximationResults {
 

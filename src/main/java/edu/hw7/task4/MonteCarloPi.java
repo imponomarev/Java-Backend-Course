@@ -1,16 +1,22 @@
 package edu.hw7.task4;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class MonteCarloPi {
 
-    private static final AtomicInteger circleCount = new AtomicInteger(0);
+    private static final AtomicInteger CIRCLE_COUNT = new AtomicInteger(0);
 
-    private static final AtomicLong totalCount = new AtomicLong(0);
+    private static final AtomicLong TOTAL_COUNT = new AtomicLong(0);
 
-    private static final Object lock = new Object();
+    private static final Object LOCK = new Object();
+
+    private static final Logger LOGGER = LogManager.getLogger();
+
+    private static final int FOUR = 4;
 
 
     private MonteCarloPi() {}
@@ -40,9 +46,9 @@ public class MonteCarloPi {
                     localTotalCount++;
                 }
 
-                synchronized (lock) {
-                    circleCount.addAndGet(localCircleCount);
-                    totalCount.addAndGet(localTotalCount);
+                synchronized (LOCK) {
+                    CIRCLE_COUNT.addAndGet(localCircleCount);
+                    TOTAL_COUNT.addAndGet(localTotalCount);
                 }
 
             });
@@ -54,10 +60,10 @@ public class MonteCarloPi {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOGGER.error("Error during calculation pi!", e);
             }
         }
 
-        return 4.0 * (circleCount.get() / (double) totalCount.get());
+        return FOUR * (CIRCLE_COUNT.get() / (double) TOTAL_COUNT.get());
     }
 }

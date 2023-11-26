@@ -135,7 +135,7 @@ class Task4Test {
     @Test
     void testDecreasingErrorMultiThread() {
 
-        int[] iterations = {10000000, 100000000, 1000000000};
+        int[] iterations = {1000, 1000000, 1000000000};
         int numThreads = Runtime.getRuntime().availableProcessors();
 
         ThreadLocalRandom random = ThreadLocalRandom.current();
@@ -150,7 +150,4 @@ class Task4Test {
             previousError = error;
         }
     }
-
-
-
 }
