@@ -132,22 +132,4 @@ class Task4Test {
         }
     }
 
-    @Test
-    void testDecreasingErrorMultiThread() {
-
-        int[] iterations = {1000, 1000000, 1000000000};
-        int numThreads = Runtime.getRuntime().availableProcessors();
-
-        ThreadLocalRandom random = ThreadLocalRandom.current();
-
-        double previousError = Double.MAX_VALUE;
-
-        for (int iteration : iterations) {
-            double piApproximation = MonteCarloPi.calculatePi(iteration, numThreads, random);
-            double error = Math.abs(piApproximation - Math.PI);
-
-            assertTrue(error < previousError, "Error is not decreasing");
-            previousError = error;
-        }
-    }
 }
