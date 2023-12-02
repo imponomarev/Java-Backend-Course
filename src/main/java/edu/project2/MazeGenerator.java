@@ -16,9 +16,10 @@ public class MazeGenerator implements Generator {
 
     private static final int FULL = 15;
 
-    Random random;
+    private Random random;
 
     public MazeGenerator(int height, int width) {
+
         if (height <= 0 || width <= 0) {
             throw new GeneratorException("height and width of maze have to be positive numbers!");
         }
@@ -27,6 +28,7 @@ public class MazeGenerator implements Generator {
         this.visited = new boolean[height][width];
         this.deque = new ArrayDeque<>();
         this.random = new Random();
+
     }
 
     private void initMazeWithWalls() {

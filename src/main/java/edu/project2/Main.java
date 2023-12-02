@@ -30,7 +30,7 @@ public final class Main {
 
         Maze maze = generator.generate();
 
-        Printer printer = new Printer(maze, LOGGER);
+        Printer printer = new Printer(maze);
 
         MazeSolver solver = new MazeSolver(maze);
 
@@ -39,7 +39,10 @@ public final class Main {
         Coordinates end = new Coordinates(END_X, END_Y);
 
         try {
+
             int[][] solution = solver.solve(start, end);
+
+            printer.generateStrMaze();
 
             printer.addSolution(solution);
 

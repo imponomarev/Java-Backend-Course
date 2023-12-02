@@ -16,7 +16,7 @@ public class MazeSolver implements Solver {
 
     private final List<Cell> solution;
 
-    Random random;
+    private Random random;
 
     private static final String NO_SOLUTION = "No solution found!";
 
@@ -38,7 +38,7 @@ public class MazeSolver implements Solver {
 
         if (startX < 0 || startX >= maze.getHeight() || startY < 0 || startY >= maze.getWidth()
             || endX < 0 || endX >= maze.getHeight() || endY < 0 || endY >= maze.getWidth()) {
-            throw new GeneratorException("Coordinates have to be positive numbers!");
+            throw new SolverException("Coordinates have to be positive numbers!");
         }
 
         Cell initCell = maze.getCell(startX, startY);
@@ -68,7 +68,6 @@ public class MazeSolver implements Solver {
                 solution.remove(solution.size() - 1);
             }
         }
-
         throw new SolverException(NO_SOLUTION);
     }
 

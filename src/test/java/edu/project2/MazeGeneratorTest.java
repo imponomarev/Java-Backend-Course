@@ -7,13 +7,6 @@ class MazeGeneratorTest {
 
 
     @Test
-    void testMazeGenerator(){
-
-        Generator generator = new MazeGenerator(10, 10);
-
-    }
-
-    @Test
     void testMazeGeneratorWithWrongInput(){
 
         Assertions.assertThrows(GeneratorException.class, () -> {

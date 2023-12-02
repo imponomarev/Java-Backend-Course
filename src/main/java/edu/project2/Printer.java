@@ -1,21 +1,17 @@
 package edu.project2;
 
-import org.apache.logging.log4j.Logger;
 
 public class Printer {
     private final Maze maze;
     private final String[][] strMaze;
-    private final Logger logger;
     private static final int CELL_SIZE = 3;
 
-    private static final int TEN = 10;
+    private static final int COORDINATE_PADDING = 10;
 
 
-    public Printer(Maze maze, Logger logger) {
+    public Printer(Maze maze) {
         this.maze = maze;
         this.strMaze = new String[maze.getHeight() * CELL_SIZE][maze.getWidth() * CELL_SIZE];
-        this.logger = logger;
-
     }
 
     private void initializeStrMaze() {
@@ -78,16 +74,19 @@ public class Printer {
     }
 
     public void printMaze() {
+
         StringBuilder yCoordinates = new StringBuilder();
         yCoordinates.append("      ");
         for (int i = 0; i < maze.getWidth(); i++) {
             yCoordinates.append(i).append("     ");
         }
-        logger.info(yCoordinates);
+
+        System.out.println(yCoordinates);
+
         for (int i = 0; i < strMaze.length; i++) {
             StringBuilder row = new StringBuilder();
             if (i % CELL_SIZE == 1) {
-                if (i / CELL_SIZE < TEN) {
+                if (i / CELL_SIZE < COORDINATE_PADDING) {
                     row.append(i / CELL_SIZE).append("   ");
                 } else {
                     row.append(i / CELL_SIZE).append("  ");
@@ -99,7 +98,7 @@ public class Printer {
             for (String cell : strMaze[i]) {
                 row.append(cell);
             }
-            logger.info(row);
+            System.out.println(row);
         }
     }
 }

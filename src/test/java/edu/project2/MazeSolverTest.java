@@ -70,7 +70,7 @@ class MazeSolverTest {
         Coordinates start = new Coordinates(0, 0);
         Coordinates end = new Coordinates(-1, 4);
 
-        Assertions.assertThrows(GeneratorException.class, () -> solver.solve(start, end));
+        Assertions.assertThrows(SolverException.class, () -> solver.solve(start, end));
     }
 
     @Test
@@ -150,7 +150,7 @@ class MazeSolverTest {
         Coordinates end = new Coordinates(-4, 4);
 
         MazeSolver solver = new MazeSolver(maze);
-        Assertions.assertThrows(GeneratorException.class, () -> solver.solve(start, end));
+        Assertions.assertThrows(SolverException.class, () -> solver.solve(start, end));
 
     }
 }
