@@ -1,6 +1,5 @@
 package edu.project2;
 
-
 public class Printer {
     private final Maze maze;
     private final String[][] strMaze;
@@ -73,6 +72,8 @@ public class Printer {
             [solution[solution.length - 1][1] * CELL_SIZE + 1] = "EX";
     }
 
+
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
     public void printMaze() {
 
         StringBuilder yCoordinates = new StringBuilder();
