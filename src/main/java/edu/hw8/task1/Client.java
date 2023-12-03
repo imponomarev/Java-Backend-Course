@@ -16,6 +16,8 @@ public class Client {
 
     private static final int SERVER_PORT = 8080;
 
+    private static final int BUFF_SIZE = 1024;
+
     private Socket socket;
 
     private static final Logger LOGGER = LogManager.getLogger();
@@ -49,7 +51,7 @@ public class Client {
         try (InputStream inputStream = socket.getInputStream();
              OutputStream outputStream = socket.getOutputStream()) {
 
-            ByteBuffer buffer = ByteBuffer.allocate(1024);
+            ByteBuffer buffer = ByteBuffer.allocate(BUFF_SIZE);
             StringBuilder responseBuilder = new StringBuilder();
 
             buffer.clear();

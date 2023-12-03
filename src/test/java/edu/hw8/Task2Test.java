@@ -14,7 +14,7 @@ class Task2Test {
             1, 1, 2, 3, 5, 8, 13, 21, 34, 55,
         };
 
-        try (FixedThreadPool threadPool = FixedThreadPool.create(4)) {
+        try (FixedThreadPool threadPool = new FixedThreadPool(4)) {
             threadPool.start();
 
             for (int i = 0; i < 10; i++) {

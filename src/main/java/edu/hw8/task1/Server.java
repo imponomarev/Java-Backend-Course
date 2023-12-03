@@ -22,6 +22,9 @@ public class Server {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+    private static final int BUFF_SIZE = 1024;
+
+
     private static final String[] KEYWORDS = {
         "личности",
         "оскорбления",
@@ -91,7 +94,7 @@ public class Server {
             try (InputStream inputStream = clientSocket.getInputStream();
                  OutputStream outputStream = clientSocket.getOutputStream()) {
 
-                ByteBuffer buffer = ByteBuffer.allocate(1024);
+                ByteBuffer buffer = ByteBuffer.allocate(BUFF_SIZE);
 
                 while (true) {
 

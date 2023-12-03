@@ -20,10 +20,6 @@ public class FixedThreadPool implements MyThreadPool {
         this.threads = new Thread[numThreads];
     }
 
-    public static FixedThreadPool create(int numThreads) {
-        return new FixedThreadPool(numThreads);
-    }
-
     @Override
     public void start() {
 
@@ -35,16 +31,7 @@ public class FixedThreadPool implements MyThreadPool {
 
         for (int i = 0; i < numThreads; i++) {
 
-            threads[i] = new Thread(() -> {
-                try {
-                    while (true) {
-                        Runnable task = taskQueue.take();
-                        task.run();
-                    }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            });
+            threads[i] = new Thread(new Worker());
             threads[i].start();
         }
     }
@@ -56,11 +43,7 @@ public class FixedThreadPool implements MyThreadPool {
             throw new IllegalStateException("Thread pool is not running");
         }
 
-        try {
-            taskQueue.put(runnable);
-        } catch (InterruptedException e) {
-            throw new RuntimeException();
-        }
+        taskQueue.offer(runnable);
 
     }
 
@@ -76,5 +59,23 @@ public class FixedThreadPool implements MyThreadPool {
         isRunning = false;
 
         Arrays.stream(threads).forEach(Thread::interrupt);
+    }
+
+    private class Worker implements Runnable {
+        @Override
+        public void run() {
+
+            while (isRunning) {
+                try {
+                    if (!taskQueue.isEmpty()) {
+                        Runnable task = taskQueue.take();
+                        task.run();
+                    }
+
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }
     }
 }
