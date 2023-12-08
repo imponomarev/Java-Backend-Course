@@ -8,6 +8,29 @@ import java.util.concurrent.RecursiveTask;
 
 public class FileSearch {
 
+    private FileSearch() {
+
+    }
+
+    private final static int LIMITATION = 100;
+
+
+    public static List<File> findDirectoriesWithMoreThan1000Files(File root) {
+
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        DirectorySearchTask task = new DirectorySearchTask(root);
+
+        return forkJoinPool.invoke(task);
+    }
+
+    public static List<File> findFilesMatchingPredicate(File root, String extension, long sizeThreshold) {
+
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        FileSearchTask task = new FileSearchTask(root, extension, sizeThreshold);
+
+        return forkJoinPool.invoke(task);
+    }
+
 
     static class DirectorySearchTask extends RecursiveTask<List<File>> {
 
@@ -39,7 +62,7 @@ public class FileSearch {
                     result.addAll(subTask.join());
                 }
 
-                if (files.length > 1000) {
+                if (files.length > LIMITATION) {
                     result.add(directory);
                 }
             }
@@ -87,22 +110,5 @@ public class FileSearch {
 
             return result;
         }
-    }
-
-    public static List<File> findDirectoriesWithMoreThan1000Files(File root) {
-
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        DirectorySearchTask task = new DirectorySearchTask(root);
-
-        return forkJoinPool.invoke(task);
-    }
-
-
-    public static List<File> findFilesMatchingPredicate(File root, String extension, long sizeThreshold) {
-
-        ForkJoinPool forkJoinPool = new ForkJoinPool();
-        FileSearchTask task = new FileSearchTask(root, extension, sizeThreshold);
-
-        return forkJoinPool.invoke(task);
     }
 }

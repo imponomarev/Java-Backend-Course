@@ -83,11 +83,11 @@ public class MazeSolver implements Solver {
 
             Future<int[][]> future = executor.submit(task);
 
-            int[][] solution = future.get();
+            int[][] result = future.get();
 
             executor.shutdown();
 
-            return solution;
+            return result;
 
         } catch (InterruptedException | ExecutionException e) {
             throw new SolverException(NO_SOLUTION);
