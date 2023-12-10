@@ -2,11 +2,11 @@ package edu.project4.painter;
 
 import edu.project4.entity.FractalImage;
 import edu.project4.entity.Pixel;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.awt.Color;
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 
 public class Painter {
 
