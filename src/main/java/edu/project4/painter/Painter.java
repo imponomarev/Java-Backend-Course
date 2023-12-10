@@ -4,8 +4,8 @@ import edu.project4.entity.FractalImage;
 import edu.project4.entity.Pixel;
 import java.io.IOException;
 import java.nio.file.Path;
-import javax.imageio.ImageIO;
 import java.awt.Color;
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 public class Painter {
