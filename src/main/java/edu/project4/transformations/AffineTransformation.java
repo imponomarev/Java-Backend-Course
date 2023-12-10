@@ -20,7 +20,7 @@ public class AffineTransformation implements Transformation {
 
     public static AffineTransformation create() {
 
-        while(true) {
+        while (true) {
             double a = RANDOM.nextDouble(-1, 1);
             double b = RANDOM.nextDouble(-1, 1);
             double c = RANDOM.nextDouble(-1, 1);

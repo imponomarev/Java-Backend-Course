@@ -2,7 +2,7 @@ package edu.project4.transformations;
 
 import edu.project4.entity.Point;
 
-public class Disc implements Transformation{
+public class Disc implements Transformation {
 
     @Override
     public Point apply(Point point) {

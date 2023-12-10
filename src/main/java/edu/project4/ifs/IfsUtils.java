@@ -1,10 +1,7 @@
 package edu.project4.ifs;
 
 
-import java.awt.Color;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ThreadLocalRandom;
+
 import edu.project4.entity.AffineColor;
 import edu.project4.entity.FractalImage;
 import edu.project4.entity.Pixel;
@@ -13,6 +10,10 @@ import edu.project4.entity.Rectangle;
 import edu.project4.transformations.AffineTransformation;
 import edu.project4.transformations.Rotation;
 import edu.project4.transformations.Transformation;
+import java.awt.Color;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadLocalRandom;
 import org.apache.commons.math3.util.Pair;
 
 public class IfsUtils {
@@ -61,16 +62,7 @@ public class IfsUtils {
 
     }
 
-    public record Affine(
-        AffineTransformation transformation,
-        Color color
-    ) {
-        public Affine(Pair<AffineTransformation, AffineColor> pair) {
-            this(pair.getFirst(), pair.getSecond().color());
-        }
-    }
-
-
+    @SuppressWarnings("ParameterNumber")
     public static void subIterate(
         List<Transformation> fractalTransformation,
         int iterationPerSample, int symmetry,
@@ -125,6 +117,16 @@ public class IfsUtils {
             if (latch != null) {
                 latch.countDown();
             }
+        }
+    }
+
+
+    public record Affine(
+        AffineTransformation transformation,
+        Color color
+    ) {
+        public Affine(Pair<AffineTransformation, AffineColor> pair) {
+            this(pair.getFirst(), pair.getSecond().color());
         }
     }
 }

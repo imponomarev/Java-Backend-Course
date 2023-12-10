@@ -17,13 +17,31 @@ import edu.project4.transformations.Hyperbolic;
 import edu.project4.transformations.Popcorn;
 import edu.project4.transformations.Spherical;
 import edu.project4.transformations.Swirl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main {
+
+    private static final int X = -4;
+
+    private static final int Y = -3;
+
+    private static final int WIDTH_AREA = 8;
+
+    private static final int HEIGHT_AREA = 6;
+
+    private static final int IMAGE_WIDTH = 1920;
+
+    private static final int IMAGE_HEIGHT = 1080;
+
+    private static final int SAMPLES = 8;
+
+    private static final int ITER_PER_SAMPLE = 1000_000;
+
+    private static final int SYMMETRY = 3;
 
     private Main() {}
 
@@ -34,11 +52,11 @@ public class Main {
 
         Painter painter = new Painter();
 
-        Rectangle rect = new Rectangle(-4, -3, 8, 6);
+        Rectangle rect = new Rectangle(X, Y, WIDTH_AREA, HEIGHT_AREA);
 
         ImageProcessor processor = new GammaCorrection();
 
-        FractalImage fractalImage = FractalImage.create(1920, 1080);
+        FractalImage fractalImage = FractalImage.create(IMAGE_WIDTH, IMAGE_HEIGHT);
 
         IFS renderer = new IfsSingleThread();
 
@@ -54,9 +72,9 @@ public class Main {
                 new Diamond(),
                 new Ex()
             ),
-        8,
-        1000_000,
-        3,
+        SAMPLES,
+        ITER_PER_SAMPLE,
+        SYMMETRY,
         rect,
         fractalImage
         );
@@ -75,7 +93,7 @@ public class Main {
         }
 
 
-        FractalImage fractalImage2 = FractalImage.create(1920, 1080);
+        FractalImage fractalImage2 = FractalImage.create(IMAGE_WIDTH, IMAGE_HEIGHT);
 
         IFS rendererMt = new IfsMultiThread();
 
@@ -91,9 +109,9 @@ public class Main {
                 new Diamond(),
                 new Ex()
             ),
-            8,
-            1000_000,
-            3,
+            SAMPLES,
+            ITER_PER_SAMPLE,
+            SYMMETRY,
             rect,
             fractalImage2
         );

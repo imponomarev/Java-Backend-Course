@@ -37,7 +37,7 @@ public class FractalImage {
     }
 
     public boolean contains(int x, int y) {
-        return x >=0 && x < width && y >= 0 && y < height;
+        return x >= 0 && x < width && y >= 0 && y < height;
     }
 
     public Pixel pixel(int x, int y) {

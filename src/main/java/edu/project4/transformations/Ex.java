@@ -4,6 +4,8 @@ import edu.project4.entity.Point;
 
 public class Ex implements Transformation {
 
+    private static final int POWER = 3;
+
     @Override
     public Point apply(Point point) {
 
@@ -15,9 +17,9 @@ public class Ex implements Transformation {
 
         double p1 = Math.cos(theta - r);
 
-        double newX = r * (Math.pow(p0, 3) + Math.pow(p1, 3));
+        double newX = r * (Math.pow(p0, POWER) + Math.pow(p1, POWER));
 
-        double newY = r * (Math.pow(p0, 3) - Math.pow(p1, 3));
+        double newY = r * (Math.pow(p0, POWER) - Math.pow(p1, POWER));
 
         return new Point(newX, newY);
     }

@@ -5,12 +5,12 @@ import edu.project4.entity.FractalImage;
 import edu.project4.entity.Rectangle;
 import edu.project4.transformations.AffineTransformation;
 import edu.project4.transformations.Transformation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class IfsMultiThread implements IFS {
 
