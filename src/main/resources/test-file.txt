@@ -1,0 +1,6 @@
+fib_6:8
+fib_7:13
+fib_15:610
+factorial_6:720
+factorial_7:5040
+factorial_9:362880
