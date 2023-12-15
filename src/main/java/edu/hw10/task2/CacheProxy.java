@@ -48,6 +48,7 @@ public class CacheProxy implements InvocationHandler {
 
     }
 
+    @SuppressWarnings("ReturnCount")
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 

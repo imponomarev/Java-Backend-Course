@@ -109,8 +109,8 @@ public class RandomObjectGenerator {
 
         for (Constructor<?> constructor : clazz.getDeclaredConstructors()) {
 
-            if (constructor.getParameterCount() >
-                maxArgsConstructor.getParameterCount()) {
+            if (constructor.getParameterCount()
+                > maxArgsConstructor.getParameterCount()) {
 
                 maxArgsConstructor = constructor;
 

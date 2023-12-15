@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class IntGenerator implements FieldGenerator {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public Object generate(Annotation[] annotations) {
@@ -23,6 +23,6 @@ public class IntGenerator implements FieldGenerator {
             }
         }
 
-        return random.nextInt(min, max);
+        return RANDOM.nextInt(min, max);
     }
 }

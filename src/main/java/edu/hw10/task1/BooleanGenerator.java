@@ -5,10 +5,10 @@ import java.util.Random;
 
 public class BooleanGenerator implements FieldGenerator {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public Object generate(Annotation[] annotations) {
-        return random.nextBoolean();
+        return RANDOM.nextBoolean();
     }
 }

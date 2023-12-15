@@ -8,9 +8,13 @@ import org.apache.logging.log4j.Logger;
 
 public class StringGenerator implements FieldGenerator {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     private static final Logger LOGGER = LogManager.getLogger();
+
+    private static final int LIMIT = 10;
+
+    private static final int ALPHABET_LENGTH = 26;
 
     public Object generate(Annotation[] annotations) {
 
@@ -30,8 +34,8 @@ public class StringGenerator implements FieldGenerator {
 
             StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < 10; i++) {
-                char c = (char) (random.nextInt(26) + 'a');
+            for (int i = 0; i < LIMIT; i++) {
+                char c = (char) (RANDOM.nextInt(ALPHABET_LENGTH) + 'a');
                 sb.append(c);
             }
 

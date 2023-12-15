@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class ByteGenerator implements FieldGenerator {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public Object generate(Annotation[] annotations) {
@@ -25,6 +25,6 @@ public class ByteGenerator implements FieldGenerator {
             }
         }
 
-        return (byte) random.nextInt(min, max);
+        return (byte) RANDOM.nextInt(min, max);
     }
 }

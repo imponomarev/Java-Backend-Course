@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class FloatGenerator implements FieldGenerator {
 
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @Override
     public Object generate(Annotation[] annotations) {
@@ -25,6 +25,6 @@ public class FloatGenerator implements FieldGenerator {
             }
         }
 
-        return random.nextFloat(min, max);
+        return RANDOM.nextFloat(min, max);
     }
 }
