@@ -18,7 +18,7 @@ public class Fibonacci implements ByteCodeAppender {
     public static final String  VALUES_TYPES = "(I)I";
 
 
-
+    @SuppressWarnings("MagicNumber")
     @Override
     public @NotNull Size apply(
         @NotNull MethodVisitor mv,
