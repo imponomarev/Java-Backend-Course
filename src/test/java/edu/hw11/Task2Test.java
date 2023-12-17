@@ -8,7 +8,7 @@ import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.implementation.MethodDelegation;
 import net.bytebuddy.matcher.ElementMatchers;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Task2Test {
 
@@ -33,10 +33,7 @@ class Task2Test {
 
             int result = ArithmeticUtils.sum(3, 3);
 
-//            assertEquals(9, result);
-
-            //Не проходит на гитхабе, поэтому закомментировал.
-            //Ошибка: UnsupportedOperation class redefinition failed: attempted to delete a method
+            assertEquals(9, result);
 
         } catch (Exception e) {}
 
