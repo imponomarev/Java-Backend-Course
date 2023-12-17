@@ -1,5 +1,14 @@
 package edu.project5;
 
+import java.lang.invoke.CallSite;
+import java.lang.invoke.LambdaMetafactory;
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
@@ -11,19 +20,11 @@ import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 import org.openjdk.jmh.runner.options.TimeValue;
-import java.lang.invoke.CallSite;
-import java.lang.invoke.LambdaMetafactory;
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+@SuppressWarnings("UncommentedMain")
 @State(Scope.Thread)
 public class ReflectionBenchmark {
     public static void main(String[] args) throws RunnerException {
@@ -36,13 +37,17 @@ public class ReflectionBenchmark {
             .forks(1)
             .warmupForks(1)
             .warmupIterations(1)
-            .warmupTime(TimeValue.seconds(5))
+            .warmupTime(TimeValue.seconds(TEST_TIME))
             .measurementIterations(1)
-            .measurementTime(TimeValue.seconds(5))
+            .measurementTime(TimeValue.seconds(TEST_TIME))
             .build();
 
         new Runner(options).run();
     }
+
+    private static final int TEST_TIME = 5;
+
+    private static final String METHOD_NAME = "name";
 
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -58,10 +63,10 @@ public class ReflectionBenchmark {
     public void setup() throws Throwable {
 
         student = new Student("Alexander", "Biryukov");
-        method = Student.class.getMethod("name");
+        method = Student.class.getMethod(METHOD_NAME);
 
         final MethodHandles.Lookup lookup = MethodHandles.lookup();
-        methodHandle = lookup.findVirtual(Student.class, "name",
+        methodHandle = lookup.findVirtual(Student.class, METHOD_NAME,
             MethodType.methodType(String.class));
 
         CallSite callSite = LambdaMetafactory.metafactory(
@@ -87,7 +92,7 @@ public class ReflectionBenchmark {
 
         try {
             bh.consume(method.invoke(student));
-        } catch (InvocationTargetException | IllegalAccessException e){
+        } catch (InvocationTargetException | IllegalAccessException e) {
             LOGGER.error(e.getMessage());
         }
     }
