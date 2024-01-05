@@ -1,0 +1,34 @@
+21:TCP:FTP — для передачи команд FTP
+22:TCP:UDP:SSH (Secure SHell) — криптографический сетевой протокол для безопасной передачи данных
+23:TCP:UDP:Telnet — применяется для передачи текстовых сообщений в незашифрованном виде
+25:TCP:UDP:SMTP (Simple Mail Transfer Protocol) — применяется для пересылки почтовых сообщений в виде незашифрованного текста
+53:TCP:UDP:DOMAIN (Domain Name System, DNS)
+67:TCP:UDP:BOOTPS (Bootstrap Protocol Server) — для сервера, с которого выполняется загрузка бездисковых рабочих станций; также используется DHCP (Dynamic Host Configuration Protocol)
+68:TCP:UDP:BOOTPC (Bootstrap Protocol Client) — для клиентов бездисковых рабочих станций, загружающихся с сервера BOOTP; также используется DHCP (Dynamic Host Configuration Protocol)
+80:TCP:UDP:HTTP (HyperText Transfer Protocol); ранее — WWW
+110:TCP:UDP:POP3 (Post Office Protocol Version 3)
+123:TCP:UDP:NTP (Network Time Protocol) — используется для синхронизации времени
+137:TCP:UDP:NETBIOS-NS (NetBIOS Name Service)
+143:TCP:UDP:IMAP (Internet Message Access Protocol) — используется для получения и синхронизации сообщений электронной почты
+161:TCP:UDP:SNMP (Simple Network Management Protocol) — используется как порт прослушивания агентами удалённого мониторинга
+162:TCP:UDP:SNMPTRAP (Simple Network Management Protocol Trap)[8] — используется как порт приёма асинхронных прерываний (traps)
+389:TCP:UDP:LDAP (Lightweight Directory Access Protocol)
+443:TCP:UDP:HTTPS (HyperText Transfer Protocol Secure) — HTTP с шифрованием по SSL или TLS
+445:TCP:UDP:MICROSOFT-DS — используется в Microsoft Windows 2000 и поздних версий для прямого TCP/IP-доступа без использования NetBIOS (например, в Active Directory)
+500:TCP:UDP:ISAKMP (Internet Security Association and Key Management Protocol)
+548:TCP:UDP:AFPOVERTCP (Apple Filing Protocol over TCP)
+1080:TCP:UDP:SOCKS
+1433:TCP:UDP:Microsoft SQL Server — Server
+1521:TCP:Oracle database default listener, в будущих релизах официально порт 2483
+1701:UDP:Layer 2 Forwarding Protocol (L2F) & Layer 2 Tunneling Protocol (L2TP)
+1723:TCP:UDP:Microsoft Point-to-Point Tunneling Protocol (PPTP)
+3128:TCP:HTTP used by Web caches and the default for the Squid cache & Kerio Winroute Firewall
+3306:TCP:UDP:Система управления базами данных MySQL
+3389:TCP:Microsoft Terminal Server (RDP) Официально зарегистрировано как Windows Based Terminal (WBT)
+5060:TCP:UDP:Session Initiation Protocol (SIP)
+5353:UDP:Multicast DNS (MDNS)
+5355:TCP:UDP:LLMNR—Link-Local Multicast Name Resolution, allows hosts to perform name resolution for hosts on the same local link (only provided by Windows Vista and Server 2008)
+5432:TCP:UDP:PostgreSQL
+5900:TCP:UDP:Virtual Network Computing (VNC) remote desktop protocol (used by Apple Remote Desktop and others)
+8080:TCP:Альтернативный порт HTTP (http_alt) — обычно используется для организации веб-прокси и кэширующих серверов, запуска веб-сервера от имени не-root пользователя
+27017:TCP:MongoDB default
