@@ -5,12 +5,9 @@ import java.lang.invoke.LambdaMetafactory;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.Scope;
@@ -50,8 +47,6 @@ public class ReflectionBenchmark {
 
     private static final String METHOD_NAME = "name";
 
-    private static final Logger LOGGER = LogManager.getLogger();
-
     private Student student;
 
     private Method method;
@@ -89,23 +84,17 @@ public class ReflectionBenchmark {
     }
 
     @Benchmark
-    public void reflection(Blackhole bh) {
+    public void reflection(Blackhole bh) throws Exception {
 
-        try {
-            bh.consume(method.invoke(student));
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            LOGGER.error(e.getMessage());
-        }
+        bh.consume(method.invoke(student));
+
     }
 
     @Benchmark
-    public void methodHandles(Blackhole bh) {
+    public void methodHandles(Blackhole bh) throws Throwable {
 
-        try {
-            bh.consume(methodHandle.invoke(student));
-        } catch (Throwable e) {
-            LOGGER.error(e.getMessage());
-        }
+        bh.consume(methodHandle.invoke(student));
+
     }
 
     @Benchmark
