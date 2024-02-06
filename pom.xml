@@ -45,8 +45,6 @@
 
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
 
-        <bytebuddy.version>1.14.8</bytebuddy.version>
-        <asm.version>9.6</asm.version>
     </properties>
 
     <dependencyManagement>
@@ -126,7 +124,6 @@
             <artifactId>byte-buddy</artifactId>
             <version>${bytebuddy.version}</version>
         </dependency>
-
 
     </dependencies>
 
